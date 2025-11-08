@@ -3,12 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 
+      OTIMIZAÇÃO SEO 1: Título 
+      O título existente já é bom e descritivo.
+    -->
     <title>GANG E-Sports - Maior time de e-sports do RN!</title>
 
     <!-- 
-      CORREÇÃO 1: Favicon (Ícone da Guia)
-      Substituído o link quebrado por um SVG inline para garantir que sempre funcione.
+      OTIMIZAÇÃO SEO 2: Meta Descrição
+      Adicionada uma descrição para os resultados de busca.
     -->
+    <meta name="description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão. Veja nossos times, loja e parceiros.">
+
+    <!-- 
+      OTIMIZAÇÃO SEO 3: Meta Keywords
+      Palavras-chave relevantes para a busca.
+    -->
+    <meta name="keywords" content="GANG E-Sports, Esports RN, Time de Valorant, Time de Fortnite, Time de Counter-Strike, Esports Natal, Competição de jogos RN">
+
+    <!-- 
+      OTIMIZAÇÃO SEO 4: Open Graph (Facebook, Instagram, WhatsApp)
+      Controla como o link aparece quando compartilhado.
+    -->
+    <meta property="og:title" content="GANG E-Sports - Maior time de e-sports do RN!">
+    <meta property="og:description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão.">
+    <meta property="og:image" content="https://gangteamesports.github.io/files/logo.png"> <!-- Use uma URL absoluta para a imagem principal -->
+    <meta property="og:url" content="https://gangteamesports.github.io/">
+    <meta property="og:type" content="website">
+
+    <!-- 
+      OTIMIZAÇÃO SEO 5: Twitter Card
+      Controla como o link aparece quando compartilhado no Twitter.
+    -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GANG E-Sports - Maior time de e-sports do RN!">
+    <meta name="twitter:description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão.">
+    <meta name="twitter:image" content="https://gangteamesports.github.io/files/logo.png"> <!-- Use uma URL absoluta -->
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="files/logo.png">
 
     <!-- Tailwind CSS CDN -->
@@ -29,10 +62,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fonte Orbitron (Tech/Gamer) -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <!-- 
-      OTIMIZAÇÃO 4: Fonte Inter
-      Adicionada a importação da fonte 'Inter', que estava sendo usada no CSS inline.
-    -->
+    <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -263,6 +293,7 @@
         <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
             <!-- Logo -->
             <a href="#home" class="text-2xl font-black uppercase tracking-wider">
+                <!-- O alt text aqui está ótimo -->
                 <img src="files/logo.png"  
                      alt="GANG E-Sports Logo" class="h-20 w-20">
             </a>
@@ -279,7 +310,8 @@
                     Contato
                 </a>
                 
-                <button id="theme-toggle" class="p-2 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">
+                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+                <button id="theme-toggle" class="p-2 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300" aria-label="Alternar tema claro/escuro">
                     <!-- 
                       ÍCONE CORRIGIDO: Sol (Outline) 
                     -->
@@ -298,7 +330,8 @@
             <!-- Menu Mobile (Botões) -->
             <div class="md:hidden flex items-center space-x-4">
                  <!-- Botão de Dark Mode (Mobile) -->
-                <button id="theme-toggle-mobile" class="p-1 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">
+                 <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+                <button id="theme-toggle-mobile" class="p-1 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300" aria-label="Alternar tema claro/escuro">
                     <!-- ÍCONE CORRIGIDO: Sol (Outline) -->
                     <svg id="theme-toggle-sun-mobile" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.22l-1.591 1.591M5.25 12H3m4.22-4.95l-1.591-1.591M12 12a3 3 0 100-6 3 3 0 000 6z" />
@@ -310,7 +343,8 @@
                 </button>
                 
                 <!-- Botão Hamburger (Cor controlada pelo CSS do body) -->
-                <button id="mobile-menu-button" class="p-1">
+                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+                <button id="mobile-menu-button" class="p-1" aria-label="Abrir menu mobile">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
@@ -322,7 +356,8 @@
     <!-- Menu Mobile (Flutuante) -->
     <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center space-y-8" style="font-family: 'Inter', sans-serif;">
         <!-- Botão de Fechar (Sempre branco no fundo escuro) -->
-        <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-gray-300 hover:text-white">
+        <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+        <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-gray-300 hover:text-white" aria-label="Fechar menu mobile">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -348,6 +383,10 @@
         
         <!-- Conteúdo do Hero -->
         <div class="relative z-10">
+            <!-- 
+              OTIMIZAÇÃO SEO 6: Tag H1
+              O H1 principal. Está ótimo.
+            -->
             <h1 class="hero-title">
                 GANG
             </h1>
@@ -369,6 +408,10 @@
     <section id="about" class="py-24 md:py-32">
         <div class="container mx-auto px-6 max-w-4xl text-center">
             <div class="fade-in-section">
+                <!-- 
+                  OTIMIZAÇÃO SEO 7: Tag H2
+                  Usar H2 para títulos de seção é semanticamente correto.
+                -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">
                     NÓS SOMOS A <span style="color: var(--main-red);">GANG</span>
                 </h2>
@@ -388,7 +431,7 @@
     <section id="founders" class="py-24 md:py-32 bg-gray-100">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Fundadores" em vermelho -->
+                <!-- TÍTULO ATUALIZADO: "Fundadores" em vermelho (H2) -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Fundadores</span></h2>
                 <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Quem tornou tudo isso possível.</p>
                 <div class="divider"></div>
@@ -397,9 +440,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
                 <!-- Fundador 1 -->
                 <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 100ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/pedro.jpg" 
                          onerror="this.src='https://placehold.co/150x150/cccccc/000000?text=Pedro'"
                          alt="Foto de Pedro Davi, CEO & CO-Fundador" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
+                    <!-- 
+                      OTIMIZAÇÃO SEO 8: Tag H3
+                      Usar H3 para sub-títulos (nomes) é correto.
+                    -->
                     <h3 class="text-2xl font-bold uppercase">Pedro Davi</h3>
                     <p class="text-red-600 mb-2 font-semibold">CEO & CO-Fundador</p>
                     <p class="font-light" style="font-family: 'Inter', sans-serif;">
@@ -408,6 +456,7 @@
                 </div>
                 <!-- Fundador 2 -->
                 <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 200ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/tomas.jpg" 
                          alt="Foto de Tomas de Paula, CMO, CFO & CO-Fundador" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
                     <h3 class="text-2xl font-bold uppercase">Tomas de Paula</h3>
@@ -424,7 +473,7 @@
     <section id="teams" class="py-24 md:py-32">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Esquadrões" em vermelho -->
+                <!-- TÍTULO ATUALIZADO: "Esquadrões" em vermelho (H2) -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Esquadrões</span></h2>
                 <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Conheça os jogadores que defendem nosso nome.</p>
                 <div class="divider"></div>
@@ -433,12 +482,15 @@
             <!-- NOVO: Grid de Imagens dos Times -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
                  <div class="fade-in-section" style="transition-delay: 100ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/valorant.jpg" alt="Imagem do time de Valorant" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
                  </div>
                  <div class="fade-in-section" style="transition-delay: 200ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/fortnite.jpg" alt="Imagem do time de Fortnite" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
                  </div>
                  <div class="fade-in-section" style="transition-delay: 300ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/cs2.png" alt="Imagem do time de Counter-Strike" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
                  </div>
             </div>
@@ -498,7 +550,7 @@
     <section id="store" class="py-24 md:py-32 bg-gray-100">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Loja" em vermelho -->
+                <!-- TÍTULO ATUALIZADO: "Loja" em vermelho (H2) -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">Nossa <span style="color: var(--main-red);">Loja</span></h2>
                 <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Vista as cores da GANG.</p>
                 <div class="divider"></div>
@@ -519,6 +571,7 @@
                      data-img="files/camisa.png"
                      data-desc="Vista o manto oficial da GANG! Nossa jersey é feita com tecido 100% poliéster de alta performance, garantindo conforto e respirabilidade durante as longas sessões de jogo. Design exclusivo com logos em alta definição.">
                     
+                    <!-- Alt text está ótimo -->
                     <img src="files/camisa.png" alt="Produto: Camisa Oficial GANG" class="rounded-md mb-4 w-full h-64 object-cover">
                     <h3 class="text-2xl font-bold uppercase">Black Jersey GANG</h3>
                     <p class="text-xl text-red-600 font-bold mb-4">R$ 89,90</p>
@@ -540,6 +593,7 @@
                      data-img="files/moletom.png"
                      data-desc="Perfeito para os dias mais frios. Nosso moletom canguru é flanelado por dentro, super macio e quente. Possui capuz ajustável e bolsos frontais. Estampa da GANG em silk de alta durabilidade.">
                     
+                    <!-- Alt text está ótimo -->
                     <img src="files/moletom.png" alt="Produto: Moletom GANG" class="rounded-md mb-4 w-full h-64 object-cover">
                     <h3 class="text-2xl font-bold uppercase">Moletom da GANG</h3>
                     <p class="text-xl text-red-600 font-bold mb-4">R$ 149,90</p>
@@ -561,7 +615,11 @@
                      data-img="files/camisaw.png"
                      data-desc="Vista o manto branco oficial da GANG! Nossa jersey é feita com tecido 100% poliéster de alta performance, garantindo conforto e respirabilidade durante as longas sessões de jogo. Design exclusivo com logos em alta definição.">
                     
-                    <img src="files/camisaw.png" alt="Produto: Máscara GANG" class="rounded-md mb-4 w-full h-64 object-cover">
+                    <!-- 
+                      OTIMIZAÇÃO SEO 9: Correção do Alt Text
+                      O alt text anterior era "Máscara GANG", corrigido para "Camisa Branca Oficial GANG".
+                    -->
+                    <img src="files/camisaw.png" alt="Produto: Camisa Branca Oficial GANG" class="rounded-md mb-4 w-full h-64 object-cover">
                     <h3 class="text-2xl font-bold uppercase">White Jersey GANG</h3>
                     <p class="text-xl text-red-600 font-bold mb-4">R$ 89,90</p>
                     <button class="open-modal-btn inline-block uppercase text-sm tracking-widest font-medium text-white bg-red-600 px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-300">
@@ -576,7 +634,7 @@
     <section id="sponsors" class="py-24 md:py-32">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Parceiros" em vermelho -->
+                <!-- TÍTULO ATUALIZADO: "Parceiros" em vermelho (H2) -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Parceiros</span></h2>
                 <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Agradecemos àqueles que acreditam em nossa jornada.</p>
                 <div class="divider"></div>
@@ -589,14 +647,17 @@
             -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center justify-items-center">
                 <div class="fade-in-section" style="transition-delay: 100ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/exitlag.png" 
                          alt="Exitlag Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover transition-transform duration-300 transform hover:-translate-y-1">
                 </div>
                 <a href="https://voidstudioapp.github.io/" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 200ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/logovoid.png" 
                          alt="Void Studios Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
                 </a>
                 <div class="fade-in-section" style="transition-delay: 300ms;">
+                    <!-- Alt text está ótimo -->
                     <img src="files/gc.jpg" 
                          alt="GamersClub Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover transition-transform duration-300 transform hover:-translate-y-1">
                 </div>
@@ -618,14 +679,17 @@
             <div class="flex justify-center space-x-6 mb-12 fade-in-section">
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/gg.teamesports/" aria-label="Siga-nos no Instagram" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <img src="files/inst.png" class="w-8 h-8">
+                    <!-- OTIMIZAÇÃO SEO 10: Alt text em ícones de imagem -->
+                    <img src="files/inst.png" class="w-8 h-8" alt="Instagram">
                 </a>
                 <!-- Discord -->
                 <a href="https://discord.com/invite/XqwfChu" aria-label="Junte-se ao nosso Discord" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <img src="files/dc.png" class="w-8 h-8">
+                    <!-- OTIMIZAÇÃO SEO 10: Alt text em ícones de imagem -->
+                    <img src="files/dc.png" class="w-8 h-8" alt="Discord">
                 </a>
                 <!-- YouTube -->
                 <a href="https://www.youtube.com/@gg_teamesports" aria-label="Veja nosso canal no YouTube" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
+                    <!-- OTIMIZAÇÃO ACESSIBILIDADE: aria-hidden em SVG decorativo (o link já tem label) -->
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19c-.23-.85-.88-1.5-1.73-1.73C18.2 5 12 5 12 5s-6.2 0-7.85.46c-.85.23-1.5.88-1.73 1.73C2 9.05 2 12 2 12s0 2.95.42 4.81c.23.85.88 1.5 1.73 1.73C5.8 19 12 19 12 19s6.2 0 7.85-.46c.85.23 1.5-.88 1.73-1.73C22 14.95 22 12 22 12s0-2.95-.42-4.81zM9.5 15.5V8.5l6 3.5-6 3.5z"/></svg>
                 </a>
             </div>
@@ -635,7 +699,8 @@
     </footer>
 
     <!-- Chat Widget Flutuante -->
-    <button id="chat-toggle-button" class="fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110" style="background-color: var(--main-red);">
+    <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+    <button id="chat-toggle-button" class="fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110" style="background-color: var(--main-red);" aria-label="Abrir chat de ajuda">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.54 15.07 3 13.56 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
@@ -646,7 +711,8 @@
         <!-- Cabeçalho do Chat -->
         <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 rounded-t-lg flex-shrink-0" style="background-color: var(--main-red);">
             <h3 class="font-bold text-white text-lg">GANG Assistant</h3>
-            <button id="chat-close-button" class="text-white/70 hover:text-white">
+            <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+            <button id="chat-close-button" class="text-white/70 hover:text-white" aria-label="Fechar chat de ajuda">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -676,7 +742,8 @@
             <div class="flex space-x-3">
                 <!-- CORREÇÃO: Input do chat com texto preto no modo claro -->
                 <input type="text" id="chat-input" placeholder="Digite sua dúvida..." class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-                <button id="chat-send-button" class="p-3 rounded-md text-white transition-colors duration-300" style="background-color: var(--main-red);">
+                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+                <button id="chat-send-button" class="p-3 rounded-md text-white transition-colors duration-300" style="background-color: var(--main-red);" aria-label="Enviar mensagem do chat">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -699,7 +766,8 @@
         -->
         <div id="modal-content" class="relative w-full max-w-lg bg-white dark:bg-[#111111] rounded-lg shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto">
             <!-- Botão de Fechar -->
-            <button id="modal-close-btn" class="absolute top-3 right-3 z-10 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors">
+            <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
+            <button id="modal-close-btn" class="absolute top-3 right-3 z-10 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors" aria-label="Fechar modal">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -918,6 +986,7 @@
             chatBody.appendChild(typingBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
+
 
         function removeTypingIndicator() {
             const typingIndicator = document.getElementById('typing-indicator');
