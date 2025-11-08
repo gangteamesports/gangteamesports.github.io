@@ -626,7 +626,7 @@
                 </a>
                 <!-- YouTube -->
                 <a href="https://www.youtube.com/@gg_teamesports" aria-label="Veja nosso canal no YouTube" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19c-.23-.85-.88-1.5-1.73-1.73C18.2 5 12 5 12 5s-6.2 0-7.85.46c-.85.23-1.5.88-1.73 1.73C2 9.05 2 12 2 12s0 2.95.42 4.81c.23.85.88 1.5 1.73 1.73C5.8 19 12 19 12 19s6.2 0 7.85-.46c.85-.23 1.5-.88 1.73-1.73C22 14.95 22 12 22 12s0-2.95-.42-4.81zM9.5 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19c-.23-.85-.88-1.5-1.73-1.73C18.2 5 12 5 12 5s-6.2 0-7.85.46c-.85.23-1.5.88-1.73 1.73C2 9.05 2 12 2 12s0 2.95.42 4.81c.23.85.88 1.5 1.73 1.73C5.8 19 12 19 12 19s6.2 0 7.85-.46c.85.23 1.5-.88 1.73-1.73C22 14.95 22 12 22 12s0-2.95-.42-4.81zM9.5 15.5V8.5l6 3.5-6 3.5z"/></svg>
                 </a>
             </div>
             
@@ -695,8 +695,9 @@
         <!-- 
           MUDANÇA: Conteúdo do Modal 
           - Fundo dark mode alterado de dark:bg-gray-900 para dark:bg-[#111111]
+          - CORREÇÃO 1: Adicionado max-h-[90vh] e overflow-y-auto para responsividade mobile
         -->
-        <div id="modal-content" class="relative w-full max-w-lg bg-white dark:bg-[#111111] rounded-lg shadow-xl overflow-hidden">
+        <div id="modal-content" class="relative w-full max-w-lg bg-white dark:bg-[#111111] rounded-lg shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto">
             <!-- Botão de Fechar -->
             <button id="modal-close-btn" class="absolute top-3 right-3 z-10 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -1026,7 +1027,12 @@
             
             // 2. Mostra o modal com animação
             productModal.classList.remove('hidden', 'opacity-0', 'invisible');
-            productModal.classList.add('modal-visible');
+            
+            // CORREÇÃO 2: Força um pequeno atraso (um "tick" do navegador)
+            // para garantir que a animação de entrada ocorra
+            setTimeout(() => {
+                productModal.classList.add('modal-visible');
+            }, 10); // 10ms é suficiente
             
             // Impede o scroll do body
             document.body.style.overflow = 'hidden';
