@@ -781,12 +781,20 @@
             
             <!-- Detalhes do Produto -->
             <div class="p-6">
-                <h3 id="modal-title" class="text-3xl font-bold uppercase" style="font-family: 'Orbitron', sans-serif;">Nome do Produto</h3>
+                <!-- 
+                  *** CORREÇÃO DARK MODE ***
+                  Adicionado dark:text-white ao título
+                -->
+                <h3 id="modal-title" class="text-3xl font-bold uppercase dark:text-white" style="font-family: 'Orbitron', sans-serif;">Nome do Produto</h3>
                 <p id="modal-price" class="text-2xl font-bold mt-2" style="color: var(--main-red);">R$ 0,00</p>
                 
                 <div class="divider !mx-0 !my-4 !w-16"></div>
                 
-                <p id="modal-desc" class="text-base font-light leading-relaxed mb-6">
+                <!-- 
+                  *** CORREÇÃO DARK MODE ***
+                  Adicionado dark:text-gray-300 à descrição
+                -->
+                <p id="modal-desc" class="text-base font-light leading-relaxed mb-6 dark:text-gray-300">
                     Descrição do produto...
                 </p>
                 
