@@ -225,6 +225,7 @@
           Usando cinza muito escuro (#111111) para separar do body (#000000)
         */
         .dark #founders,
+        .dark #gallery, /* ADICIONADO */
         .dark #store,
         .dark #contact {
             background-color: #111111;
@@ -293,6 +294,43 @@
         }
 
         /* Removida a animação duplicada float-right */
+
+        /* --- NOVO: Estilos da Galeria --- */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .gallery-item img {
+            transition: transform 0.4s ease-out;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .gallery-item .overlay-text {
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transform: translateY(10px);
+            transition: transform 0.4s ease-out;
+        }
+        .gallery-item:hover .overlay-text {
+            transform: translateY(0);
+        }
+
         
     </style>
 </head>
@@ -577,6 +615,44 @@
             </div>
         </div>
     </section>
+
+    <!-- 
+      NOVA SEÇÃO: Galeria
+    -->
+    <section id="gallery" class="py-24 md:py-32 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossa <span style="color: var(--main-red);">Galeria</span></h2>
+                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Momentos da nossa última jornada.</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Imagem 1 -->
+                <div class="gallery-item fade-in-section" style="transition-delay: 100ms;">
+                    <img src="files/galeria1.jpg" alt="Momento da GANG 1" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay">
+                        <span class="overlay-text">Vitória Campeonato Local 🏆</span>
+                    </div>
+                </div>
+                <!-- Imagem 2 -->
+                <div class="gallery-item fade-in-section" style="transition-delay: 200ms;">
+                    <img src="files/galeria2.jpg" alt="Momento da GANG 2" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay">
+                        <span class="overlay-text">Momento da Vitória 🥇</span>
+                    </div>
+                </div>
+                <!-- Imagem 3 -->
+                <div class="gallery-item fade-in-section" style="transition-delay: 300ms;">
+                    <img src="files/galeria3.jpg" alt="Momento da GANG 3" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay">
+                        <span class="overlay-text">Durante o Campeonato 🎮</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- SEÇÃO: Loja -->
     <section id="store" class="py-24 md:py-32 bg-gray-100">
@@ -661,6 +737,8 @@
             </div>
         </div>
     </section>
+
+    
     
     <!-- Seção Parceiros (Sponsors) -->
     <section id="sponsors" class="py-24 md:py-32">
@@ -673,26 +751,24 @@
             </div>
             
             <!-- 
-              MUDANÇA: Logos de patrocinadores
-              - Grid alterado para 'md:grid-cols-3' para 3 itens
-              - Placeholders de texto substituídos por <img> com placeholders visuais
+              MUDANÇA: Logos de patrocinadores clicáveis
             -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center justify-items-center">
-                <div class="fade-in-section" style="transition-delay: 100ms;">
-                    <!-- Alt text está ótimo -->
+                <!-- Exitlag -->
+                <a href="https://www.exitlag.com/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 100ms;">
                     <img src="files/exitlag.png" 
-                         alt="Exitlag Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover transition-transform duration-300 transform hover:-translate-y-1">
-                </div>
-                <a href="https://voidstudioapp.github.io/" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 200ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/logovoid.png" 
-                         alt="Void Studios Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
+                         alt="Exitlag Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
                 </a>
-                <div class="fade-in-section" style="transition-delay: 300ms;">
-                    <!-- Alt text está ótimo -->
+                <!-- Void Studios -->
+                <a href="https://voidstudioapp.github.io/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 200ms;">
+                    <img src="files/logovoid.png" 
+                         alt="Void Studios Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
+                </a>
+                <!-- GamersClub -->
+                <a href="https://gamersclub.com.br/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 300ms;">
                     <img src="files/gc.jpg" 
-                         alt="GamersClub Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover transition-transform duration-300 transform hover:-translate-y-1">
-                </div>
+                         alt="GamersClub Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
+                </a>
             </div>
         </div>
     </section>
