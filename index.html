@@ -282,6 +282,18 @@
             opacity: 1;
         }
 
+        /* NOVO: Animações de flutuação */
+        /* ATUALIZAÇÃO: Renomeado e corrigido para animar apenas Y */
+        @keyframes float-vertical {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float-vertical 6s ease-in-out infinite;
+        }
+
+        /* Removida a animação duplicada float-right */
+        
     </style>
 </head>
 <body class="antialiased"> <!-- Classes de cor removidas, agora controladas pelo CSS acima -->
@@ -473,8 +485,25 @@
     </section>
 
     <!-- Seção Times (Teams) -->
-    <section id="teams" class="py-24 md:py-32">
-        <div class="container mx-auto px-6">
+    <!-- ATUALIZAÇÃO: Adicionado relative, overflow-hidden e FUNDO para os elementos flutuantes funcionarem -->
+    <section id="teams" class="py-24 md:py-32 relative overflow-hidden bg-white dark:bg-black">
+        
+        <!-- NOVO: Elemento flutuante esquerdo (Raze) -->
+        <!-- ATUALIZAÇÃO: Posição 'left' negativo reduzido (menos para o canto) -->
+        <img src="files/raze.png" 
+             alt="Elemento decorativo Raze" 
+             onerror="this.style.display='none'"
+             class="absolute bottom-0 -left-[8rem] lg:-left-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
+        
+        <!-- NOVO: Elemento flutuante direito (Peixoto) -->
+        <!-- ATUALIZAÇÃO: Posição 'right' negativo reduzido (menos para o canto) -->
+        <img src="files/peixoto.png" 
+             alt="Elemento decorativo Peixoto"
+             onerror="this.style.display='none'" 
+             class="absolute bottom-0 -right-[8rem] lg:-right-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
+
+        <!-- ATUALIZAÇÃO: Adicionado relative e z-10 para o conteúdo ficar na frente -->
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16 fade-in-section">
                 <!-- TÍTULO ATUALIZADO: "Esquadrões" em vermelho (H2) -->
                 <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Esquadrões</span></h2>
