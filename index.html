@@ -485,24 +485,24 @@
     </section>
 
     <!-- Seção Times (Teams) -->
-    <!-- ATUALIZAÇÃO: Adicionado relative, overflow-hidden e FUNDO para os elementos flutuantes funcionarem -->
-    <section id="teams" class="py-24 md:py-32 relative overflow-hidden bg-white dark:bg-black">
+    <!-- ATUALIZAÇÃO: Removido 'bg-white dark:bg-black' para corrigir o bug do backdrop-filter e da textura -->
+    <section id="teams" class="py-24 md:py-32 relative overflow-hidden">
         
         <!-- NOVO: Elemento flutuante esquerdo (Raze) -->
-        <!-- ATUALIZAÇÃO: Posição 'left' negativo reduzido (menos para o canto) -->
+        <!-- ATUALIZAÇÃO: Z-index e Opacidade revertidos para 'z-20' e 'opacity-100' (na frente) -->
         <img src="files/raze.png" 
              alt="Elemento decorativo Raze" 
              onerror="this.style.display='none'"
              class="absolute bottom-0 -left-[8rem] lg:-left-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
         
         <!-- NOVO: Elemento flutuante direito (Peixoto) -->
-        <!-- ATUALIZAÇÃO: Posição 'right' negativo reduzido (menos para o canto) -->
+        <!-- ATUALIZAÇÃO: Z-index e Opacidade revertidos para 'z-20' e 'opacity-100' (na frente) -->
         <img src="files/peixoto.png" 
              alt="Elemento decorativo Peixoto"
              onerror="this.style.display='none'" 
              class="absolute bottom-0 -right-[8rem] lg:-right-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
 
-        <!-- ATUALIZAÇÃO: Adicionado relative e z-10 para o conteúdo ficar na frente -->
+        <!-- ATUALIZAÇÃO: Z-index mantido em 'z-10' (atrás das imagens flutuantes) -->
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16 fade-in-section">
                 <!-- TÍTULO ATUALIZADO: "Esquadrões" em vermelho (H2) -->
