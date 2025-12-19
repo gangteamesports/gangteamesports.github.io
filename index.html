@@ -1,1257 +1,957 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
+<html lang="pt-br" class="scroll-smooth no-scrollbar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GANG E-Sports | Time de E-Sports</title>
     
-    <!-- 
-      OTIMIZAÇÃO SEO 1: Título 
-      O título existente já é bom e descritivo.
-    -->
-    <title>GANG E-Sports - Maior time de e-sports do RN!</title>
+    <meta name="description" content="GANG E-Sports: A elite do cenário competitivo.">
+    
+    <!-- FAVICON (Ícone da Guia) -->
+    <link rel="icon" type="image/png" href="files/logo.png">
+    
+    <!-- Font Awesome (Biblioteca de Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- 
-      OTIMIZAÇÃO SEO 2: Meta Descrição
-      Adicionada uma descrição para os resultados de busca.
-    -->
-    <meta name="description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão. Veja nossos times, loja e parceiros.">
-
-    <!-- 
-      OTIMIZAÇÃO SEO 3: Meta Keywords
-      Palavras-chave relevantes para a busca.
-    -->
-    <meta name="keywords" content="GANG E-Sports, Esports RN, Time de Valorant, Time de Fortnite, Time de Counter-Strike, Esports Natal, Competição de jogos RN">
-
-    <!-- 
-      OTIMIZAÇÃO SEO 4: Open Graph (Facebook, Instagram, WhatsApp)
-      Controla como o link aparece quando compartilhado.
-    -->
-    <meta property="og:title" content="GANG E-Sports - Maior time de e-sports do RN!">
-    <meta property="og:description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão.">
-    <meta property="og:image" content="https://gangteamesports.github.io/files/logo.png"> <!-- Use uma URL absoluta para a imagem principal -->
-    <meta property="og:url" content="https://gangteamesports.github.io/">
-    <meta property="og:type" content="website">
-
-    <!-- 
-      OTIMIZAÇÃO SEO 5: Twitter Card
-      Controla como o link aparece quando compartilhado no Twitter.
-    -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GANG E-Sports - Maior time de e-sports do RN!">
-    <meta name="twitter:description" content="Conheça a GANG E-Sports, a equipe de ponta do Rio Grande do Norte. Fomentamos a rivalidade virtual com foco na vitória e diversão.">
-    <meta name="twitter:image" content="https://gangteamesports.github.io/files/logo.png"> <!-- Use uma URL absoluta -->
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="files/logo.png">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2745919461784336"
-     crossorigin="anonymous"></script>
-
-    <!-- Tailwind CSS CDN -->
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;900&family=Outfit:wght@200;400;700&display=swap" rel="stylesheet">
     
-    <!-- Script para evitar flicker (FOUC) do dark mode -->
     <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        luxury: {
+                            black: '#030303',
+                            panel: '#0A0A0A',
+                            red: '#E11D48', 
+                            gold: '#D4AF37',
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px #E11D48' },
+                            '50%': { boxShadow: '0 0 20px #E11D48' },
+                        }
+                    }
+                }
+            }
         }
     </script>
-    
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fonte Orbitron (Tech/Gamer) -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <!-- Fonte Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* Cor principal personalizada */
-        :root {
-            --main-red: #DC2626; /* Tailwind red-600 */
-        }
-
-        /* CORREÇÃO DE TEXTO (MODO CLARO): 
-          Força o texto padrão para preto (#000000) no modo claro.
-        */
+        /* --- Base Premium --- */
         body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #ffffff; /* Padrão light mode */
-            color: #000000; /* Texto preto no modo claro */
-            transition: background-color 0.3s ease, color 0.3s ease; 
-            overflow-x: hidden; /* Impede scroll horizontal */
-        }
-        
-        /* CORREÇÃO DE TEXTO (MODO ESCURO): 
-          Força o texto padrão para cinza claro (#e5e7eb) no modo escuro.
-          Fundo do body alterado para preto puro (#000000).
-        */
-        .dark body {
-            background-color: #000000; /* Fundo preto puro */
-            color: #e5e7eb; /* gray-200 */
+            background-color: #030303;
+            color: #ffffff;
+            cursor: none;
+            overflow-x: hidden;
         }
 
-        /* Efeito de fundo de ruído sutil (Apenas no dark mode) 
-          Opacidade muito baixa para ser sutil.
-        */
-        .dark body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            z-index: -1;
+        /* --- Cursor Customizado --- */
+        #cursor-dot, #cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999;
             pointer-events: none;
         }
-
-        /* --- Animação do Preloader --- */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #fff; /* Preloader light mode */
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        #cursor-dot { width: 8px; height: 8px; background-color: #E11D48; }
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
-        /* Preloader dark mode (preto puro) */
-        .dark #preloader {
-            background-color: #000;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(0, 0, 0, 0.1); /* Spinner light mode */
-            border-top-color: var(--main-red);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        .dark .spinner {
-             border: 4px solid rgba(255, 255, 255, 0.2);
-             border-top-color: var(--main-red);
+        body:hover #cursor-outline {
+            width: 30px; height: 30px;
         }
 
-        /* --- Animação do Herói --- */
-        .hero-title {
-            font-size: 15vw; /* Reduzido para caber com o banner */
-            line-height: 0.9;
-            color: #ffffff; /* CORREÇÃO: Padrão branco para legibilidade no banner */
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .dark .hero-title {
-            color: #ffffff; /* Mantém branco */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(220, 38, 38, 0.3); /* Sombra mais forte */
-        }
-
-        @keyframes hero-fade-in {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-subtitle {
-            animation: hero-fade-in 1.5s ease-out 1s forwards;
-            opacity: 0;
+        /* --- Glassmorphism --- */
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
         
-        /* CORREÇÃO 3: Indicador de Scroll */
-        @keyframes bounce-scroll {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-15px);
-            }
-            60% {
-                transform: translateY(-8px);
-            }
-        }
-        .scroll-indicator-icon {
-            animation: bounce-scroll 2.5s infinite ease-out;
-            animation-delay: 2s; /* Espera a animação do texto terminar */
-        }
-        
-        /* --- Animações de Scroll (Fade-in) --- */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Borda do card da equipe (Glassmorphism sutil) */
-        .team-card {
-            border: 1px solid rgba(0, 0, 0, 0.1); /* Light mode */
-            background: rgba(255, 255, 255, 0.5); /* Light mode */
-            backdrop-filter: blur(8px); /* Efeito de vidro */
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        /* Fundo do card no dark mode (cinza quase preto) */
-        .dark .team-card {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(17, 17, 17, 0.5); /* #111111 com 50% */
-        }
-        .team-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--main-red);
-            box-shadow: 0 0 25px rgba(220, 38, 38, 0.35); /* Brilho vermelho */
-        }
-        
-        /* Linha de separação */
-        .divider {
-            height: 2px; /* Mais grossa */
-            width: 100px;
-            background-color: var(--main-red);
-            margin: 1.5rem auto; /* Mais espaçamento */
-            border-radius: 2px;
+        .glass-nav {
+            background: rgba(3, 3, 3, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Fundos das seções no Dark Mode
-          Usando cinza muito escuro (#111111) para separar do body (#000000)
-        */
-        .dark #founders,
-        .dark #gallery, /* ADICIONADO */
-        .dark #store,
-        .dark #contact {
-            background-color: #111111;
-        }
-
-
-        /* --- Estilos do Chat Widget --- */
-        #chat-widget-window {
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            border-radius: 0.75rem;
-        }
-        .chat-bubble-bot {
-            background-color: var(--main-red);
-        }
-        .chat-bubble-user {
-            background-color: #d1d5db; /* gray-300 (Contraste melhorado) */
-        }
-        .dark .chat-bubble-user {
-            background-color: #374151; /* gray-700 */
-        }
-        
-        /* Scrollbar sutil para o chat */
-        #chat-body::-webkit-scrollbar {
-            width: 6px;
-        }
-        #chat-body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        #chat-body::-webkit-scrollbar-thumb {
-            background: #4b5563; /* gray-600 */
-            border-radius: 3px;
-        }
-        #chat-body {
-            scrollbar-width: thin;
-            scrollbar-color: #4b5563 transparent;
-        }
-
-        /* --- NOVO: Estilos do Modal de Produto --- */
-        #product-modal {
-            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
-        }
-        #modal-content {
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform: scale(0.95);
-            opacity: 0;
-        }
-        #product-modal.modal-visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        #product-modal.modal-visible #modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        /* NOVO: Animações de flutuação */
-        /* ATUALIZAÇÃO: Renomeado e corrigido para animar apenas Y */
-        @keyframes float-vertical {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-float {
-          animation: float-vertical 6s ease-in-out infinite;
-        }
-
-        /* Removida a animação duplicada float-right */
-
-        /* --- NOVO: Estilos da Galeria --- */
-        .gallery-item {
-            position: relative;
+        /* --- Galeria Simples --- */
+        .gallery-card {
             overflow: hidden;
-            border-radius: 0.5rem; /* rounded-lg */
+            position: relative;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .gallery-item img {
-            transition: transform 0.4s ease-out;
+        .gallery-card img {
+            transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), filter 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        .gallery-item:hover img {
+        .gallery-card:hover img {
             transform: scale(1.1);
+            filter: brightness(1.1);
         }
-        .gallery-item .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            display: flex;
-            align-items: flex-end;
-            padding: 1rem;
+        .gallery-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
             opacity: 0;
-            transition: opacity 0.4s ease-out;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
         }
-        .gallery-item:hover .overlay {
+        .gallery-card:hover .gallery-overlay {
             opacity: 1;
-        }
-        .gallery-item .overlay-text {
-            color: white;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            transform: translateY(10px);
-            transition: transform 0.4s ease-out;
-        }
-        .gallery-item:hover .overlay-text {
             transform: translateY(0);
         }
 
+        /* --- Loja Hover --- */
+        .product-card:hover .store-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030303; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E11D48; }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            color: transparent;
+        }
         
+        /* Selected Size */
+        .size-btn.selected {
+            background-color: #E11D48;
+            color: white;
+            border-color: #E11D48;
+        }
     </style>
 </head>
-<body class="antialiased"> <!-- Classes de cor removidas, agora controladas pelo CSS acima -->
+<body class="font-outfit antialiased">
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
 
     <!-- Preloader -->
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-colors duration-300" id="navbar">
-        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#home" class="text-2xl font-black uppercase tracking-wider">
-                <!-- O alt text aqui está ótimo -->
-                <img src="files/logo.png"  
-                     alt="GANG E-Sports Logo" class="h-20 w-20">
-            </a>
-            
-            <!-- Links de Navegação (Desktop) -->
-            <!-- Classes de cor de texto removidas, exceto hovers e fundos -->
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#about" class="uppercase text-sm tracking-widest font-medium hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Sobre</a>
-                <a href="#founders" class="uppercase text-sm tracking-widest font-medium hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Fundadores</a>
-                <a href="#teams" class="uppercase text-sm tracking-widest font-medium hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Times</a>
-                <a href="#store" class="uppercase text-sm tracking-widest font-medium hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Loja</a>
-                <a href="#sponsors" class="uppercase text-sm tracking-widest font-medium hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Parceiros</a>
-                <a href="#contact" class="uppercase text-sm tracking-widest font-medium text-white dark:text-black bg-red-600 px-5 py-2 rounded-md hover:bg-gray-900 dark:hover:bg-white transition-colors duration-300" style="background-color: var(--main-red); --main-red: #DC2626;">
-                    Contato
-                </a>
-                
-                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-                <button id="theme-toggle" class="p-2 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300" aria-label="Alternar tema claro/escuro">
-                    <!-- 
-                      ÍCONE CORRIGIDO: Sol (Outline) 
-                    -->
-                    <svg id="theme-toggle-sun" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.22l-1.591 1.591M5.25 12H3m4.22-4.95l-1.591-1.591M12 12a3 3 0 100-6 3 3 0 000 6z" />
-                    </svg>
-                    <!-- 
-                      ÍCONE CORRIGIDO: Lua (Outline) 
-                    -->
-                    <svg id="theme-toggle-moon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.998-6.002z" />
-                    </svg>
-                </button>
+    <div class="fixed inset-0 bg-[#030303] z-[10000] flex justify-center items-center" id="preloader">
+        <div class="flex flex-col items-center">
+            <h1 class="text-5xl font-orbitron font-bold tracking-[0.2em] text-white mb-4 animate-pulse">GANG</h1>
+            <div class="w-32 h-[1px] bg-gray-800 overflow-hidden">
+                <div class="w-full h-full bg-luxury-red transform -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
             </div>
-            
-            <!-- Menu Mobile (Botões) -->
-            <div class="md:hidden flex items-center space-x-4">
-                 <!-- Botão de Dark Mode (Mobile) -->
-                 <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-                <button id="theme-toggle-mobile" class="p-1 rounded-md hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300" aria-label="Alternar tema claro/escuro">
-                    <!-- ÍCONE CORRIGIDO: Sol (Outline) -->
-                    <svg id="theme-toggle-sun-mobile" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.22l-1.591 1.591M5.25 12H3m4.22-4.95l-1.591-1.591M12 12a3 3 0 100-6 3 3 0 000 6z" />
-                    </svg>
-                    <!-- ÍCONE CORRIGIDO: Lua (Outline) -->
-                    <svg id="theme-toggle-moon-mobile" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.998-6.002z" />
-                    </svg>
-                </button>
-                
-                <!-- Botão Hamburger (Cor controlada pelo CSS do body) -->
-                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-                <button id="mobile-menu-button" class="p-1" aria-label="Abrir menu mobile">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Menu Mobile (Flutuante) -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center space-y-8" style="font-family: 'Inter', sans-serif;">
-        <!-- Botão de Fechar (Sempre branco no fundo escuro) -->
-        <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-        <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-gray-300 hover:text-white" aria-label="Fechar menu mobile">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-        
-        <!-- Links (Sempre brancos no fundo escuro) -->
-        <a href="#about" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-gray-300 hover:text-white transition-colors duration-300">Sobre</a>
-        <a href="#founders" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-gray-300 hover:text-white transition-colors duration-300">Fundadores</a>
-        <a href="#teams" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-gray-300 hover:text-white transition-colors duration-300">Times</a>
-        <a href="#store" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-gray-300 hover:text-white transition-colors duration-300">Loja</a>
-        <a href="#sponsors" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-gray-300 hover:text-white transition-colors duration-300">Parceiros</a>
-        <a href="#contact" class="mobile-menu-link uppercase text-2xl tracking-widest font-medium text-white bg-red-600 px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-300">
-            Contato
-        </a>
-    </div>
-
-    <!-- Seção Hero -->
-    <section id="home" class="h-screen flex flex-col items-center justify-center text-center p-4 relative overflow-hidden dark:bg-gray-900 bg-gray-200">
-        <!-- Fundo do Herói -->
-        <div class="absolute inset-0 bg-cover bg-center z-0" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(files/fundo.png);">
+            <style>@keyframes shimmer { 100% { transform: translateX(100%); } }</style>
         </div>
+    </div>
+
+    <!-- 3D Canvas -->
+    <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-70"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-500" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo Simplificada -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="files/logo.png" class="w-12 h-12 object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_10px_rgba(225,29,72,0.5)]">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-12">
+                <a href="#about" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors py-2 relative group">
+                    Sobre <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-red transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#teams" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors py-2 relative group">
+                    Esquadrões <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-red transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#store" class="text-xs uppercase tracking-[0.2em] text-luxury-red font-bold hover:text-white transition-colors py-2 relative group">
+                    Loja <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-red transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact-section" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors py-2 relative group">
+                    Contato <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-luxury-red transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6">
+                 <!-- Cart Indicator -->
+                <div id="cart-btn" class="flex items-center gap-2 text-gray-400 group cursor-pointer hover:text-luxury-red transition-colors" title="Finalizar no WhatsApp">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span class="text-xs font-bold" id="cart-count">CART (0)</span>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="md:hidden text-white hover:text-luxury-red">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-luxury-black z-40 hidden flex-col justify-center items-center gap-8 transition-opacity duration-300 opacity-0">
+        <a href="#about" class="text-3xl font-orbitron text-white hover:text-luxury-red mobile-link">SOBRE</a>
+        <a href="#teams" class="text-3xl font-orbitron text-white hover:text-luxury-red mobile-link">TIMES</a>
+        <a href="#store" class="text-3xl font-orbitron text-luxury-red font-bold hover:text-white mobile-link">LOJA</a>
+        <a href="#contact-section" class="text-3xl font-orbitron text-white hover:text-luxury-red mobile-link">CONTATO</a>
+        <button id="close-mobile" class="absolute top-6 right-6 text-gray-500 hover:text-white">
+            <i class="fa-solid fa-xmark text-3xl"></i>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+        <img src="files/raze.png" onerror="this.style.display='none'" class="absolute -left-20 bottom-0 h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
+        <img src="files/peixoto.png" onerror="this.style.display='none'" class="absolute -right-20 bottom-0 h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
         
-        <!-- Conteúdo do Hero -->
-        <div class="relative z-10">
-            <!-- 
-              OTIMIZAÇÃO SEO 6: Tag H1
-              O H1 principal. Está ótimo.
-            -->
-            <h1 class="hero-title">
-                GANG
+        <div class="z-10 text-center max-w-5xl">
+            <p class="text-luxury-red tracking-[0.5em] text-sm uppercase mb-4 opacity-0 animate-fade-up">Competição. Vitória. Legado.</p>
+            <h1 class="text-6xl md:text-9xl font-orbitron font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-900 leading-[0.9] tracking-tighter mb-8 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+                GANG<br><span class="text-stroke text-transparent">E-SPORTS</span>
             </h1>
-            <!-- CORREÇÃO: Subtítulo sempre claro (text-gray-200) por estar no banner -->
-            <p class="hero-subtitle text-lg md:text-2xl text-gray-200 uppercase tracking-widest font-light" style="letter-spacing: 0.3em; animation-delay: 0.5s;">
-                A GANG tem dois objetivos, a vitória, e principalmente, a diversão.
+            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
+                A maior organização do Rio Grande do Norte. Redefinindo o cenário competitivo com precisão tática e paixão pelo jogo.
             </p>
         </div>
-        
-        <!-- Indicador de Scroll (Cor controlada pelo CSS do body) -->
-        <div class="scroll-indicator-icon absolute bottom-8 left-1/2 -translate-x-1/2 opacity-75">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-            </svg>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <span class="text-[10px] uppercase tracking-widest text-gray-500">Scroll</span>
+            <i class="fa-solid fa-chevron-down text-luxury-red animate-bounce"></i>
         </div>
     </section>
 
-    <!-- Seção Sobre (About) -->
-    <section id="about" class="py-24 md:py-32">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <div class="fade-in-section">
-                <!-- 
-                  OTIMIZAÇÃO SEO 7: Tag H2
-                  Usar H2 para títulos de seção é semanticamente correto.
-                -->
-                <h2 class="text-3xl md:text-5xl font-black uppercase">
-                    NÓS SOMOS A <span style="color: var(--main-red);">GANG</span>
-                </h2>
-                <div class="divider"></div>
-                <!-- Classes de cor removidas, controladas pelo CSS do body -->
-                <p class="text-lg md:text-xl leading-relaxed mt-8 font-light" style="font-family: 'Inter', sans-serif;">
-                    Apresentando "Gang E-Sports", a equipe de esports de ponta que fomenta a rivalidade virtual. Com habilidade incomparável e dedicação inabalável, nossos jogadores traçam um caminho para a vitória. Inovação e sinergia definem nossa jogabilidade conforme conquistamos o reino virtual, demolindo oponentes com precisão tática. Liderados por capitães de vários jogos, a Gang E-Sports comanda o palco dos esports do RN, aproveitando o poder da mira para reivindicar a glória do campeonato. Junte-se a nós nesta jornada eletrizante enquanto redefinimos os limites da excelência dos esportes eletrônicos.
-                </p>
-                <blockquote class="mt-8 text-xl font-semibold italic" style="font-family: 'Inter', sans-serif;">
-                   "A GANG tem dois objetivos, a vitória, e principalmente, a diversão."
-                </blockquote>
-            </div>
-        </div>
-    </section>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-32 relative z-10">
+        <!-- Watermark Logo -->
+        <img src="files/logo.png" class="absolute -left-20 top-20 w-96 opacity-5 pointer-events-none grayscale rotate-[-15deg]">
 
-    <!-- SEÇÃO: Fundadores -->
-    <section id="founders" class="py-24 md:py-32 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Fundadores" em vermelho (H2) -->
-                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Fundadores</span></h2>
-                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Quem tornou tudo isso possível.</p>
-                <div class="divider"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
-                <!-- Fundador 1 -->
-                <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 100ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/pedro.jpg" 
-                         onerror="this.src='https://placehold.co/150x150/cccccc/000000?text=Pedro'"
-                         alt="Foto de Pedro Davi, CEO & CO-Fundador" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
-                    <!-- 
-                      OTIMIZAÇÃO SEO 8: Tag H3
-                      Usar H3 para sub-títulos (nomes) é correto.
-                    -->
-                    <h3 class="text-2xl font-bold uppercase">Pedro Davi</h3>
-                    <p class="text-red-600 mb-2 font-semibold">CEO & CO-Fundador</p>
-                    <p class="font-light" style="font-family: 'Inter', sans-serif;">
-                        Estabeleceu a visão da equipe de fomentar a "rivalidade virtual" e redefinir os limites da excelência nos e-sports.
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-8">
+                    <h2 class="text-sm font-bold text-luxury-red tracking-[0.2em] uppercase">Manifesto</h2>
+                    <h3 class="text-4xl md:text-5xl font-orbitron font-bold leading-tight">Muito mais que<br>apenas um time.</h3>
+                    <p class="text-gray-400 leading-relaxed font-light border-l border-luxury-border pl-6">
+                        A GANG não joga apenas para participar. Jogamos para dominar. Fundada com a visão de elevar o nível do E-Sports no Nordeste, nossa organização combina talento bruto com infraestrutura de elite.
                     </p>
                 </div>
-                <!-- Fundador 2 -->
-                <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 200ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/tomas.jpg" 
-                         alt="Foto de Tomas de Paula, CMO, CFO & CO-Fundador" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover">
-                    <h3 class="text-2xl font-bold uppercase">Tomas de Paula</h3>
-                    <p class="text-red-600 mb-2 font-semibold">CMO, CFO & CO-Fundador</p>
-                    <p class="font-light" style="font-family: 'Inter', sans-serif;">
-                        Peça-chave na criação de uma equipe focada em "inovação e sinergia", visando a vitória através da "precisão tática".
-                    </p>
+
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                    <div class="absolute inset-0 bg-luxury-red opacity-5 blur-[100px] rounded-full"></div>
+                    <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-500 group">
+                        <div class="flex items-center gap-6 mb-6">
+                            <img src="files/pedro.jpg" onerror="this.src='https://placehold.co/100/111/fff'" class="w-16 h-16 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 border border-luxury-border">
+                            <div><h4 class="font-orbitron font-bold text-lg">Pedro Davi</h4><p class="text-xs text-luxury-red uppercase tracking-widest">CEO & Founder</p></div>
+                        </div>
+                        <p class="text-sm text-gray-500 font-light">"A vitória é uma consequência da preparação obsessiva."</p>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-500 group mt-0 md:mt-12">
+                        <div class="flex items-center gap-6 mb-6">
+                            <img src="files/tomas.jpg" onerror="this.src='https://placehold.co/100/111/fff'" class="w-16 h-16 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 border border-luxury-border">
+                            <div><h4 class="font-orbitron font-bold text-lg">Tomas de Paula</h4><p class="text-xs text-luxury-red uppercase tracking-widest">CMO & CFO</p></div>
+                        </div>
+                        <p class="text-sm text-gray-500 font-light">"Inovação está no nosso DNA. Não seguimos tendências, nós as criamos."</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Times (Teams) -->
-    <!-- ATUALIZAÇÃO: Removido 'bg-white dark:bg-black' para corrigir o bug do backdrop-filter e da textura -->
-    <section id="teams" class="py-24 md:py-32 relative overflow-hidden">
+    <!-- TEAMS SECTION -->
+    <section id="teams" class="py-32 bg-luxury-panel relative overflow-hidden">
+        <!-- Watermark Logo -->
+        <img src="files/logo.png" class="absolute -right-20 top-40 w-[500px] opacity-5 pointer-events-none grayscale rotate-[15deg]">
+
+        <div class="max-w-7xl mx-auto px-6 mb-16 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-orbitron font-bold uppercase mb-4">Esquadrões</h2>
+            <div class="w-24 h-1 bg-luxury-red mx-auto"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[600px] relative z-10">
+            <!-- Valorant -->
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+                <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
+                <img src="files/valorant.jpg" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
+                <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
+                    <h3 class="text-3xl font-orbitron font-bold text-white mb-2">VALORANT</h3>
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100">
+                        <ul class="text-sm text-gray-300 space-y-2 mt-4 border-t border-white/20 pt-4">
+                            <li class="flex justify-between"><span>Zopray</span> <span class="text-luxury-red text-xs">Flex/IGL</span></li>
+                            <li class="flex justify-between"><span>Liscarecuda</span> <span class="text-luxury-red text-xs">Sentinela</span></li>
+                            <li class="flex justify-between"><span>Luke</span> <span class="text-luxury-red text-xs">Duelista</span></li>
+                            <li class="flex justify-between"><span>Zoneira/Suco</span> <span class="text-luxury-red text-xs">Iniciador</span></li>
+                            <li class="flex justify-between"><span>Ravenna</span> <span class="text-luxury-red text-xs">Controlador</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Fortnite -->
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+                <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
+                <img src="files/fortnite.jpg" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
+                <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
+                    <h3 class="text-3xl font-orbitron font-bold text-white mb-2">FORTNITE</h3>
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100">
+                         <ul class="text-sm text-gray-300 space-y-2 mt-4 border-t border-white/20 pt-4">
+                            <li class="flex justify-between"><span>Luke</span> <span class="text-luxury-red text-xs">IGL</span></li>
+                            <li class="flex justify-between"><span>Ravenna</span> <span class="text-luxury-red text-xs">Fragger</span></li>
+                            <li class="flex justify-between"><span>Jairinho</span> <span class="text-luxury-red text-xs">Sup</span></li>
+                            <li class="flex justify-between"><span>Diggle</span> <span class="text-luxury-red text-xs">Flex</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- CS2 -->
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+                <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
+                <img src="files/cs2.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
+                <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
+                    <h3 class="text-3xl font-orbitron font-bold text-white mb-2">CS:2</h3>
+                    <div class="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100">
+                         <ul class="text-sm text-gray-300 space-y-2 mt-4 border-t border-white/20 pt-4">
+                            <li class="flex justify-between"><span>Luke</span> <span class="text-luxury-red text-xs">AWP</span></li>
+                            <li class="flex justify-between"><span>Zopray</span> <span class="text-luxury-red text-xs">IGL</span></li>
+                            <li class="flex justify-between"><span>Ravenna</span> <span class="text-luxury-red text-xs">Entry</span></li>
+                            <li class="flex justify-between"><span>Lucas</span> <span class="text-luxury-red text-xs">Lurker</span></li>
+                            <li class="flex justify-between"><span>Jairinho</span> <span class="text-luxury-red text-xs">Rifler</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA (Simples) -->
+    <section class="py-32 relative overflow-hidden bg-[#020202]">
+        <!-- Watermark Logo -->
+        <img src="files/logo.png" class="absolute -left-20 bottom-20 w-[400px] opacity-5 pointer-events-none grayscale rotate-[-10deg]">
+
+        <div class="max-w-7xl mx-auto px-6 mb-16 flex flex-col items-center text-center relative z-10">
+            <h2 class="text-4xl font-orbitron font-bold uppercase">Hall da Fama</h2>
+            <div class="w-16 h-1 bg-luxury-red mt-4"></div>
+        </div>
         
-        <!-- NOVO: Elemento flutuante esquerdo (Raze) -->
-        <!-- ATUALIZAÇÃO: Z-index e Opacidade revertidos para 'z-20' e 'opacity-100' (na frente) -->
-        <img src="files/raze.png" 
-             alt="Elemento decorativo Raze" 
-             onerror="this.style.display='none'"
-             class="absolute bottom-0 -left-[8rem] lg:-left-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            <!-- Foto 1 -->
+            <div class="gallery-card h-[400px]">
+                <img src="files/galeria1.jpg" alt="Galeria 1">
+                <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
+                    <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Campeonato</span>
+                    <h3 class="text-xl font-bold font-orbitron text-white mt-1">Vitória Regional</h3>
+                </div>
+            </div>
+            <!-- Foto 2 (Destaque) -->
+            <div class="gallery-card h-[400px] md:h-[450px] md:-mt-8 border-luxury-red border-2 shadow-[0_0_20px_rgba(225,29,72,0.2)]">
+                <img src="files/galeria2.jpg" alt="Galeria 2">
+                <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
+                    <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Destaque</span>
+                    <h3 class="text-2xl font-bold font-orbitron text-white mt-1">Momento Decisivo</h3>
+                </div>
+            </div>
+            <!-- Foto 3 -->
+            <div class="gallery-card h-[400px]">
+                <img src="files/galeria3.jpg" alt="Galeria 3">
+                <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
+                    <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Bastidores</span>
+                    <h3 class="text-xl font-bold font-orbitron text-white mt-1">Setup & Foco</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORE (Hyper-Destaque) -->
+    <section id="store" class="py-32 bg-[#050505] relative overflow-hidden border-y-2 border-luxury-red/30">
+        <!-- Background Gradient Glow -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-red/5 to-transparent pointer-events-none"></div>
         
-        <!-- NOVO: Elemento flutuante direito (Peixoto) -->
-        <!-- ATUALIZAÇÃO: Z-index e Opacidade revertidos para 'z-20' e 'opacity-100' (na frente) -->
-        <img src="files/peixoto.png" 
-             alt="Elemento decorativo Peixoto"
-             onerror="this.style.display='none'" 
-             class="absolute bottom-0 -right-[8rem] lg:-right-[12rem] md:w-[28rem] lg:w-[36rem] h-auto opacity-100 z-20 pointer-events-none hidden md:block animate-float">
+        <!-- Watermark Logo -->
+        <img src="files/logo.png" class="absolute right-0 top-0 w-[600px] opacity-5 pointer-events-none grayscale translate-x-1/3 -translate-y-1/3">
 
-        <!-- ATUALIZAÇÃO: Z-index mantido em 'z-10' (atrás das imagens flutuantes) -->
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Esquadrões" em vermelho (H2) -->
-                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Esquadrões</span></h2>
-                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Conheça os jogadores que defendem nosso nome.</p>
-                <div class="divider"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <span class="text-luxury-red text-sm uppercase tracking-[0.5em] font-bold animate-pulse">OFFICIAL GEAR</span>
+                <h2 class="text-5xl md:text-7xl font-orbitron font-black mt-4 text-white drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]">LOJA GANG</h2>
+                <div class="w-32 h-1 bg-luxury-red mx-auto mt-6 shadow-[0_0_20px_#E11D48]"></div>
             </div>
-            
-            <!-- NOVO: Grid de Imagens dos Times -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
-                 <div class="fade-in-section" style="transition-delay: 100ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/valorant.jpg" alt="Imagem do time de Valorant" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
-                 </div>
-                 <div class="fade-in-section" style="transition-delay: 200ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/fortnite.jpg" alt="Imagem do time de Fortnite" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
-                 </div>
-                 <div class="fade-in-section" style="transition-delay: 300ms;">
-                    <!-- Alt text está ótimo -->
-                    <img src="files/cs2.png" alt="Imagem do time de Counter-Strike" class="rounded-lg w-full h-80 object-cover shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
-                 </div>
-            </div>
-            
-            <!-- Grid de Texto dos Times (sem imagens) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                <!-- 
-                  MUDANÇA: Card Valorant 
-                  - Imagem removida
-                  - Padding alterado de p-6 para p-8
-                -->
-                <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 100ms;">
-                    <h3 class="text-3xl font-extrabold uppercase mb-4" style="color: var(--main-red);">Valorant</h3>
-                    <ul class="space-y-3 font-light" style="font-family: 'Inter', sans-serif;">
-                        <li>Zopray (Flex/IGL)</li>
-                        <li>Liscarecuda (Sentinela)</li>
-                        <li>Luke (Duelista/IGL)</li>
-                        <li>Zoneira/Suco (Iniciador)</li>
-                        <li>Ravenna (Controlador)</li>
-                    </ul>
-                </div>
-                <!-- 
-                  MUDANÇA: Card Fortnite 
-                  - Imagem removida
-                  - Padding alterado de p-6 para p-8
-                -->
-                <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 200ms;">
-                    <h3 class="text-3xl font-extrabold uppercase mb-4" style="color: var(--main-red);">Fortnite</h3>
-                    <ul class="space-y-3 font-light" style="font-family: 'Inter', sans-serif;">
-                        <li>Luke (IGL)</li>
-                        <li>Ravenna (Fragger)</li>
-                        <li>Jairinho (Sup)</li>
-                        <li>Diggle (Sup/Fragger)</li>
-                    </ul>
-                </div>
-                <!-- 
-                  MUDANÇA: Card CS:GO 
-                  - Imagem removida
-                  - Padding alterado de p-6 para p-8
-                -->
-                <div class="team-card rounded-lg p-8 text-center fade-in-section" style="transition-delay: 300ms;">
-                    <h3 class="text-3xl font-extrabold uppercase mb-4" style="color: var(--main-red);">Counter-Strike</h3>
-                    <ul class="space-y-3 font-light" style="font-family: 'Inter', sans-serif;">
-                        <li>Luke (AWPer/IGL)</li>
-                        <li>Zopray (IGL/Rifler)</li>
-                        <li>Ravenna (Entry)</li>
-                        <li>Lucas (Lurker)</li>
-                        <li>Jairinho (Rifler/Entry)</li>
-                        <li>Diggle (Sup/Coach)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 
-      NOVA SEÇÃO: Galeria
-    -->
-    <section id="gallery" class="py-24 md:py-32 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-section">
-                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossa <span style="color: var(--main-red);">Galeria</span></h2>
-                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Momentos da nossa última jornada.</p>
-                <div class="divider"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Imagem 1 -->
-                <div class="gallery-item fade-in-section" style="transition-delay: 100ms;">
-                    <img src="files/galeria1.jpg" alt="Momento da GANG 1" class="w-full h-full object-cover" loading="lazy">
-                    <div class="overlay">
-                        <span class="overlay-text">Vitória Campeonato Local 🏆</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Produto 1 -->
+                <div class="group product-card" data-title="Jersey Black" data-price="89.90" data-img="files/camisa.png" data-desc="Performance e estilo. A Jersey oficial de jogo.">
+                    <div class="bg-luxury-panel rounded-2xl p-8 mb-6 relative overflow-hidden transition-all duration-500 group-hover:bg-[#111] border border-white/10 shadow-2xl group-hover:shadow-[0_0_30px_rgba(225,29,72,0.2)] group-hover:border-luxury-red/50">
+                        <div class="absolute inset-0 bg-luxury-red/5 scale-0 group-hover:scale-100 rounded-full blur-[80px] transition-transform duration-700"></div>
+                        <img src="files/camisa.png" class="w-full h-72 object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl">
+                        
+                        <div class="store-overlay absolute inset-0 bg-black/80 backdrop-blur-sm z-20 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 gap-4">
+                            <h3 class="font-orbitron font-bold text-lg">Tamanho</h3>
+                            <div class="flex gap-2 flex-wrap justify-center px-4 sizes-container">
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">P</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">M</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">G</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">GG</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">XG</button>
+                            </div>
+                            <button class="add-to-cart-btn bg-luxury-red text-white px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-colors rounded-sm shadow-[0_0_15px_#E11D48] hover:shadow-none">Adicionar</button>
+                             <button class="open-modal-btn text-xs text-gray-400 hover:text-white underline decoration-luxury-red mt-2">Detalhes</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="font-bold text-xl font-orbitron">Jersey Black</h3>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Uniforme Titular</p>
+                        </div>
+                        <span class="text-luxury-red font-bold text-xl">R$ 89,90</span>
                     </div>
                 </div>
-                <!-- Imagem 2 -->
-                <div class="gallery-item fade-in-section" style="transition-delay: 200ms;">
-                    <img src="files/galeria2.jpg" alt="Momento da GANG 2" class="w-full h-full object-cover" loading="lazy">
-                    <div class="overlay">
-                        <span class="overlay-text">Momento da Vitória 🥇</span>
+
+                <!-- Produto 2 -->
+                <div class="group product-card" data-title="Stealth Hoodie" data-price="149.90" data-img="files/moletom.png" data-desc="Conforto máximo. Moletom premium flanelado.">
+                    <div class="bg-luxury-panel rounded-2xl p-8 mb-6 relative overflow-hidden transition-all duration-500 group-hover:bg-[#111] border border-white/10 shadow-2xl group-hover:shadow-[0_0_30px_rgba(225,29,72,0.2)] group-hover:border-luxury-red/50">
+                         <div class="absolute inset-0 bg-luxury-red/5 scale-0 group-hover:scale-100 rounded-full blur-[80px] transition-transform duration-700"></div>
+                        <img src="files/moletom.png" class="w-full h-72 object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl">
+                        
+                        <div class="store-overlay absolute inset-0 bg-black/80 backdrop-blur-sm z-20 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 gap-4">
+                            <h3 class="font-orbitron font-bold text-lg">Tamanho</h3>
+                            <div class="flex gap-2 flex-wrap justify-center px-4 sizes-container">
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">P</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">M</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">G</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">GG</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">XG</button>
+                            </div>
+                            <button class="add-to-cart-btn bg-luxury-red text-white px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-colors rounded-sm shadow-[0_0_15px_#E11D48] hover:shadow-none">Adicionar</button>
+                             <button class="open-modal-btn text-xs text-gray-400 hover:text-white underline decoration-luxury-red mt-2">Detalhes</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="font-bold text-xl font-orbitron">Stealth Hoodie</h3>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Inverno/Casual</p>
+                        </div>
+                        <span class="text-luxury-red font-bold text-xl">R$ 149,90</span>
                     </div>
                 </div>
-                <!-- Imagem 3 -->
-                <div class="gallery-item fade-in-section" style="transition-delay: 300ms;">
-                    <img src="files/galeria3.jpg" alt="Momento da GANG 3" class="w-full h-full object-cover" loading="lazy">
-                    <div class="overlay">
-                        <span class="overlay-text">Durante o Campeonato 🎮</span>
+
+                <!-- Produto 3 -->
+                 <div class="group product-card" data-title="Jersey White" data-price="89.90" data-img="files/camisaw.png" data-desc="Edição especial branca. Design limpo.">
+                    <div class="bg-luxury-panel rounded-2xl p-8 mb-6 relative overflow-hidden transition-all duration-500 group-hover:bg-[#111] border border-white/10 shadow-2xl group-hover:shadow-[0_0_30px_rgba(225,29,72,0.2)] group-hover:border-luxury-red/50">
+                         <div class="absolute inset-0 bg-luxury-red/5 scale-0 group-hover:scale-100 rounded-full blur-[80px] transition-transform duration-700"></div>
+                        <img src="files/camisaw.png" class="w-full h-72 object-contain relative z-10 transform group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl">
+                        
+                        <div class="store-overlay absolute inset-0 bg-black/80 backdrop-blur-sm z-20 flex flex-col justify-center items-center opacity-0 transform translate-y-4 transition-all duration-300 gap-4">
+                            <h3 class="font-orbitron font-bold text-lg">Tamanho</h3>
+                            <div class="flex gap-2 flex-wrap justify-center px-4 sizes-container">
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">P</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">M</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">G</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">GG</button>
+                                <button class="size-btn w-10 h-10 border border-gray-600 rounded hover:border-luxury-red hover:text-luxury-red hover:bg-white/5 transition-all text-xs font-bold">XG</button>
+                            </div>
+                            <button class="add-to-cart-btn bg-luxury-red text-white px-8 py-3 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-colors rounded-sm shadow-[0_0_15px_#E11D48] hover:shadow-none">Adicionar</button>
+                             <button class="open-modal-btn text-xs text-gray-400 hover:text-white underline decoration-luxury-red mt-2">Detalhes</button>
+                        </div>
                     </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- SEÇÃO: Loja -->
-    <section id="store" class="py-24 md:py-32 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Loja" em vermelho (H2) -->
-                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossa <span style="color: var(--main-red);">Loja</span></h2>
-                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Vista as cores da GANG.</p>
-                <div class="divider"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                
-                <!-- 
-                  MUDANÇA: Produto 1 (Camisa)
-                  - Adicionado 'product-card'
-                  - Adicionado 'data-*' atributos para o modal
-                  - Link "Comprar Agora" substituído por botão "Ver Detalhes"
-                -->
-                <div class="product-card team-card rounded-lg p-6 text-center fade-in-section" 
-                     style="transition-delay: 100ms;"
-                     data-title="GANG Black Jersey"
-                     data-price="R$ 89,90"
-                     data-img="files/camisa.png"
-                     data-desc="Vista o manto oficial da GANG! Nossa jersey é feita com tecido 100% poliéster de alta performance, garantindo conforto e respirabilidade durante as longas sessões de jogo. Design exclusivo com logos em alta definição.">
-                    
-                    <!-- Alt text está ótimo -->
-                    <img src="files/camisa.png" alt="Produto: Camisa Oficial GANG" class="rounded-md mb-4 w-full h-64 object-cover">
-                    <h3 class="text-2xl font-bold uppercase">GANG Black Jersey</h3>
-                    <p class="text-xl text-red-600 font-bold mb-4">R$ 89,90</p>
-                    <button class="open-modal-btn inline-block uppercase text-sm tracking-widest font-medium text-white bg-red-600 px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-300">
-                        Ver Detalhes
-                    </button>
-                </div>
-                
-                <!-- 
-                  MUDANÇA: Produto 2 (Moletom)
-                  - Adicionado 'product-card'
-                  - Adicionado 'data-*' atributos para o modal
-                  - Link "Comprar Agora" substituído por botão "Ver Detalhes"
-                -->
-                <div class="product-card team-card rounded-lg p-6 text-center fade-in-section" 
-                     style="transition-delay: 200ms;"
-                     data-title="GANG Black Hoodie"
-                     data-price="R$ 149,90"
-                     data-img="files/moletom.png"
-                     data-desc="Perfeito para os dias mais frios. Nosso moletom canguru é flanelado por dentro, super macio e quente. Possui capuz ajustável e bolsos frontais. Estampa da GANG em silk de alta durabilidade.">
-                    
-                    <!-- Alt text está ótimo -->
-                    <img src="files/moletom.png" alt="Produto: Moletom GANG" class="rounded-md mb-4 w-full h-64 object-cover">
-                    <h3 class="text-2xl font-bold uppercase">GANG Black Hoodie</h3>
-                    <p class="text-xl text-red-600 font-bold mb-4">R$ 149,90</p>
-                    <button class="open-modal-btn inline-block uppercase text-sm tracking-widest font-medium text-white bg-red-600 px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-300">
-                        Ver Detalhes
-                    </button>
-                </div>
-                
-                <!-- 
-                  MUDANÇA: Produto 3 (Máscara)
-                  - Adicionado 'product-card'
-                  - Adicionado 'data-*' atributos para o modal
-                  - Link "Comprar Agora" substituído por botão "Ver Detalhes"
-                -->
-                <div class="product-card team-card rounded-lg p-6 text-center fade-in-section" 
-                     style="transition-delay: 300ms;"
-                     data-title="GANG White Jersey"
-                     data-price="R$ 89,90"
-                     data-img="files/camisaw.png"
-                     data-desc="Vista o manto branco oficial da GANG! Nossa jersey é feita com tecido 100% poliéster de alta performance, garantindo conforto e respirabilidade durante as longas sessões de jogo. Design exclusivo com logos em alta definição.">
-                    
-                    <!-- 
-                      OTIMIZAÇÃO SEO 9: Correção do Alt Text
-                      O alt text anterior era "Máscara GANG", corrigido para "Camisa Branca Oficial GANG".
-                    -->
-                    <img src="files/camisaw.png" alt="Produto: Camisa Branca Oficial GANG" class="rounded-md mb-4 w-full h-64 object-cover">
-                    <h3 class="text-2xl font-bold uppercase">GANG White Jersey</h3>
-                    <p class="text-xl text-red-600 font-bold mb-4">R$ 89,90</p>
-                    <button class="open-modal-btn inline-block uppercase text-sm tracking-widest font-medium text-white bg-red-600 px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-300">
-                        Ver Detalhes
-                    </button>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="font-bold text-xl font-orbitron">Jersey White</h3>
+                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Uniforme Reserva</p>
+                        </div>
+                        <span class="text-luxury-red font-bold text-xl">R$ 89,90</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    
-    <!-- Seção Parceiros (Sponsors) -->
-    <section id="sponsors" class="py-24 md:py-32">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-section">
-                <!-- TÍTULO ATUALIZADO: "Parceiros" em vermelho (H2) -->
-                <h2 class="text-3xl md:text-5xl font-black uppercase">Nossos <span style="color: var(--main-red);">Parceiros</span></h2>
-                <p class="text-lg mt-4 font-light" style="font-family: 'Inter', sans-serif;">Agradecemos àqueles que acreditam em nossa jornada.</p>
-                <div class="divider"></div>
-            </div>
-            
-            <!-- 
-              MUDANÇA: Logos de patrocinadores clicáveis
-            -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center justify-items-center">
-                <!-- Exitlag -->
-                <a href="https://www.exitlag.com/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 100ms;">
-                    <img src="files/exitlag.png" 
-                         alt="Exitlag Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
-                </a>
-                <!-- Void Studios -->
-                <a href="https://voidstudioapp.github.io/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 200ms;">
-                    <img src="files/logovoid.png" 
-                         alt="Void Studios Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
-                </a>
-                <!-- GamersClub -->
-                <a href="https://gamersclub.com.br/" target="_blank" rel="noopener noreferrer" class="fade-in-section transition-transform duration-300 transform hover:-translate-y-1" style="transition-delay: 300ms;">
-                    <img src="files/gc.jpg" 
-                         alt="GamersClub Patrocinio" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-600 object-cover" loading="lazy">
-                </a>
+    <!-- SPONSORS -->
+    <section class="py-20 border-t border-luxury-border">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-10">Trusted Partners</p>
+            <div class="flex justify-center items-center gap-16 grayscale hover:grayscale-0 transition-all duration-700 opacity-60 hover:opacity-100">
+                <a href="https://www.exitlag.com/" target="_blank"><img src="files/exitlag.png" class="h-12 w-auto object-contain hover:scale-110 transition-transform"></a>
+                <a href="https://voidstudioapp.github.io/" target="_blank"><img src="files/logovoid.png" class="h-12 w-auto object-contain hover:scale-110 transition-transform"></a>
+                <a href="https://gamersclub.com.br/" target="_blank"><img src="files/gc.png" class="h-12 w-12 rounded-full object-contain hover:scale-110 transition-transform"></a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="py-20 bg-gray-100 transition-colors duration-300">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black uppercase mb-4 fade-in-section">Junte-se à <span style="color: var(--main-red);">GANG</span></h2>
-            <p class="mb-8 fade-in-section font-light transition-colors duration-300" style="font-family: 'Inter', sans-serif;">Siga nossa jornada e não perca nenhuma jogada.</p>
-            
-            <!-- 
-              MUDANÇA: Ícones Sociais (SVG Refeito)
-              - Ícones do Instagram e Discord substituídos por versões outline mais limpas.
-              - Ícone do YouTube também atualizado para consistência.
-            -->
-            <div class="flex justify-center space-x-6 mb-12 fade-in-section">
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/gg.teamesports/" aria-label="Siga-nos no Instagram" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <!-- OTIMIZAÇÃO SEO 10: Alt text em ícones de imagem -->
-                    <img src="files/inst.png" class="w-8 h-8" alt="Instagram">
-                </a>
-                <!-- Discord -->
-                <a href="https://discord.com/invite/XqwfChu" aria-label="Junte-se ao nosso Discord" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <!-- OTIMIZAÇÃO SEO 10: Alt text em ícones de imagem -->
-                    <img src="files/dc.png" class="w-8 h-8" alt="Discord">
-                </a>
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/@gg_teamesports" aria-label="Veja nosso canal no YouTube" class="hover:text-red-600 dark:hover:text-red-500 transition-transform duration-300 transform hover:-translate-y-1">
-                    <!-- OTIMIZAÇÃO ACESSIBILIDADE: aria-hidden em SVG decorativo (o link já tem label) -->
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.19c-.23-.85-.88-1.5-1.73-1.73C18.2 5 12 5 12 5s-6.2 0-7.85.46c-.85.23-1.5.88-1.73 1.73C2 9.05 2 12 2 12s0 2.95.42 4.81c.23.85.88 1.5 1.73 1.73C5.8 19 12 19 12 19s6.2 0 7.85-.46c.85.23 1.5-.88 1.73-1.73C22 14.95 22 12 22 12s0-2.95-.42-4.81zM9.5 15.5V8.5l6 3.5-6 3.5z"/></svg>
-                </a>
+    <!-- NEW CONTACT SECTION -->
+    <section id="contact-section" class="py-32 bg-[#050505] relative border-t border-luxury-border">
+        <!-- Big Watermark Logo -->
+        <img src="files/logo.png" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] opacity-5 pointer-events-none grayscale">
+        
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+            <!-- Contact Info -->
+            <div class="space-y-8">
+                <h2 class="text-4xl font-orbitron font-bold">ENTRE EM <span class="text-luxury-red">CONTATO</span></h2>
+                <p class="text-gray-400">Quer entrar para o time ou propor uma parceria? Estamos sempre buscando novos talentos e oportunidades.</p>
+                
+                <div class="space-y-4">
+                    <div class="glass-panel p-6 flex items-center gap-4 hover:border-luxury-red transition-colors">
+                        <div class="w-10 h-10 bg-luxury-red/20 rounded-full flex items-center justify-center text-luxury-red">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Email</p>
+                            <p class="font-bold">voidstudio.contato@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel p-6 flex items-center gap-4 hover:border-luxury-red transition-colors">
+                        <div class="w-10 h-10 bg-luxury-red/20 rounded-full flex items-center justify-center text-luxury-red">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase">Telefone / WhatsApp</p>
+                            <p class="font-bold">(84) 99904-8867</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recruitment Form -->
+            <div class="glass-panel p-8 rounded-xl border-t-2 border-luxury-red">
+                <h3 class="font-orbitron font-bold text-xl mb-6">Apply to GANG</h3>
+                <form class="space-y-4" action="mailto:voidstudio.contato@gmail.com" method="post" enctype="text/plain">
+                    <div>
+                        <label class="text-xs uppercase text-gray-500 mb-1 block">Nome Completo</label>
+                        <input type="text" class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm focus:border-luxury-red outline-none transition-colors" placeholder="Seu nome">
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase text-gray-500 mb-1 block">Email</label>
+                        <input type="email" class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm focus:border-luxury-red outline-none transition-colors" placeholder="seu@email.com">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs uppercase text-gray-500 mb-1 block">Jogo</label>
+                            <select class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm focus:border-luxury-red outline-none transition-colors text-gray-300">
+                                <option>Valorant</option>
+                                <option>Fortnite</option>
+                                <option>CS2</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs uppercase text-gray-500 mb-1 block">Rank Atual</label>
+                            <input type="text" class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm focus:border-luxury-red outline-none transition-colors" placeholder="Ex: Imortal 2">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase text-gray-500 mb-1 block">Mensagem</label>
+                        <textarea class="w-full bg-black/50 border border-white/10 rounded p-3 text-sm focus:border-luxury-red outline-none transition-colors h-24" placeholder="Conte sobre sua experiência..."></textarea>
+                    </div>
+                    <button class="w-full bg-luxury-red text-white py-3 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
+                        Enviar Aplicação
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-luxury-black py-16 border-t border-luxury-border relative overflow-hidden">
+        <!-- Logo Watermark Footer -->
+        <img src="files/logo.png" class="absolute -right-20 -bottom-20 w-96 opacity-5 pointer-events-none grayscale rotate-12">
+
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+            <div class="text-center md:text-left">
+                <div class="flex flex-col md:flex-row items-center gap-4 mb-2">
+                    <img src="files/logo.png" class="w-16 h-16 object-contain">
+                </div>
+                <p class="text-xs text-gray-500 mt-2">© 2025 GANG E-Sports. All rights reserved.</p>
+                <p class="text-xs text-gray-600 mt-1">Desenvolvido por <a href="https://voidstudio.com.br" target="_blank" class="text-luxury-red hover:underline">Void Studio</a></p>
             </div>
             
-        <p class="text-sm fade-in-section transition-colors duration-300" style="font-family: 'Inter', sans-serif;">© 2025 GANG E-Sports. Todos os direitos reservados. | Desenvolvido por <a href="https://voidstudioapp.github.io/" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300">Void Studio</a></p>
+            <div class="flex gap-6">
+                <a href="https://instagram.com/gg.teamesports" class="w-10 h-10 rounded-full bg-luxury-panel flex items-center justify-center hover:bg-luxury-red hover:text-white transition-all text-gray-400">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a href="https://discord.com/invite/XqwfChu" class="w-10 h-10 rounded-full bg-luxury-panel flex items-center justify-center hover:bg-[#5865F2] hover:text-white transition-all text-gray-400">
+                    <i class="fa-brands fa-discord text-xl"></i>
+                </a>
+                <a href="https://www.youtube.com/@gg_teamesports" class="w-10 h-10 rounded-full bg-luxury-panel flex items-center justify-center hover:bg-red-600 hover:text-white transition-all text-gray-400">
+                    <i class="fa-brands fa-youtube text-xl"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- Chat Widget Flutuante -->
-    <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-    <button id="chat-toggle-button" class="fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110" style="background-color: var(--main-red);" aria-label="Abrir chat de ajuda">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.54 15.07 3 13.56 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
+    <!-- MODAL PRODUCT -->
+    <div id="product-modal" class="fixed inset-0 z-[60] hidden justify-center items-center">
+        <div id="modal-overlay" class="absolute inset-0 bg-black/90 backdrop-blur-md"></div>
+        <div id="modal-content" class="relative bg-luxury-panel border border-luxury-border p-8 max-w-2xl w-full mx-4 shadow-2xl transform scale-90 opacity-0 transition-all duration-300">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-black/50 flex items-center justify-center p-4 rounded-lg">
+                    <img id="modal-img" src="" class="max-h-64 object-contain">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-luxury-red text-xs uppercase tracking-widest mb-2">GANG Official Store</span>
+                    <h2 id="modal-title" class="font-orbitron font-bold text-3xl mb-2 text-white"></h2>
+                    <p id="modal-price" class="text-2xl font-bold mb-6 text-white"></p>
+                    <p id="modal-desc" class="text-gray-400 text-sm mb-6 leading-relaxed"></p>
+                    <a href="https://wa.me/5584999048867" target="_blank" class="text-center w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-luxury-red hover:text-white transition-colors rounded-sm">
+                        Comprar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOT -->
+    <button id="chat-trigger" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-luxury-red flex items-center justify-center text-white shadow-[0_0_30px_rgba(225,29,72,0.5)] hover:scale-110 transition-transform">
+        <i class="fa-solid fa-comment-dots text-2xl"></i>
     </button>
     
-    <!-- Janela do Chat -->
-    <div id="chat-widget-window" class="fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-white dark:bg-[#111111] border border-gray-200 dark:border-gray-800 rounded-lg shadow-xl hidden opacity-0 scale-95 flex flex-col" style="font-family: 'Inter', sans-serif; height: 500px;">
-        <!-- Cabeçalho do Chat -->
-        <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 rounded-t-lg flex-shrink-0" style="background-color: var(--main-red);">
-            <h3 class="font-bold text-white text-lg">GANG Assistant</h3>
-            <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-            <button id="chat-close-button" class="text-white/70 hover:text-white" aria-label="Fechar chat de ajuda">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+    <div id="chat-window" class="fixed bottom-28 right-8 z-50 w-96 bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-2xl hidden flex-col overflow-hidden backdrop-blur-xl">
+        <div class="bg-gradient-to-r from-luxury-red to-[#be123c] p-4 flex justify-between items-center shadow-lg">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="font-bold text-sm text-white tracking-widest uppercase font-orbitron">GANG AI</span>
+            </div>
+            <button id="close-chat" class="text-white/80 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
         
-        <!-- Corpo do Chat (Scrollável) -->
-        <div id="chat-body" class="p-4 space-y-4 flex-1 overflow-y-auto">
-            <!-- Mensagem do Bot -->
-            <div class="flex justify-start">
-                <div class="chat-bubble-bot p-4 rounded-lg rounded-bl-none text-white max-w-xs shadow">
-                    <p class="text-sm font-semibold">Olá! 👋 Sou o assistente virtual da GANG E-Sports. Como posso te ajudar hoje?</p>
-                    <div class="mt-3 space-y-2 text-sm">
-                        <p class="font-bold">Digite o número ou palavra-chave:</p>
-                        <p>1️⃣ - Nossos Times</p>
-                        <p>2️⃣ - Sobre a GANG</p>
-                        <p>3️⃣ - Loja Oficial</p>
-                        <p>4️⃣ - Falar com um humano</p>
-                        <p>5️⃣ - Nossos Parceiros</p>
+        <div id="chat-messages" class="h-80 p-5 overflow-y-auto space-y-4 bg-black/40">
+            <div class="flex flex-col gap-2">
+                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200 self-start max-w-[90%]">
+                    <p class="mb-2">Sistema Online. Bem-vindo à rede da GANG. Como posso ajudar?</p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <button onclick="processCommand('times')" class="text-xs border border-white/20 px-2 py-1 rounded hover:bg-white/10 hover:border-luxury-red transition-colors">🏆 Times</button>
+                        <button onclick="processCommand('loja')" class="text-xs border border-white/20 px-2 py-1 rounded hover:bg-white/10 hover:border-luxury-red transition-colors">👕 Loja</button>
+                        <button onclick="processCommand('contato')" class="text-xs border border-white/20 px-2 py-1 rounded hover:bg-white/10 hover:border-luxury-red transition-colors">📞 Contato</button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Input -->
-        <div class="p-4 bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-800 rounded-b-lg flex-shrink-0">
-            <div class="flex space-x-3">
-                <!-- CORREÇÃO: Input do chat com texto preto no modo claro -->
-                <input type="text" id="chat-input" placeholder="Digite sua dúvida..." class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-                <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-                <button id="chat-send-button" class="p-3 rounded-md text-white transition-colors duration-300" style="background-color: var(--main-red);" aria-label="Enviar mensagem do chat">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+        <div class="p-4 bg-black/60 border-t border-white/5 relative">
+            <div id="typing-indicator" class="absolute -top-8 left-6 text-xs text-gray-500 hidden">Digitando...</div>
+            <div class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem..." class="w-full bg-transparent text-sm text-white placeholder-gray-600 outline-none border-b border-transparent focus:border-luxury-red transition-colors pb-1">
+                <button onclick="sendMsg()" class="text-luxury-red hover:text-white">
+                    <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </div>
         </div>
     </div>
-    
-    <!-- 
-      NOVO: Modal de Detalhes do Produto
-    -->
-    <div id="product-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden opacity-0 invisible" style="font-family: 'Inter', sans-serif;">
-        <!-- Overlay para fechar -->
-        <div id="modal-overlay" class="absolute inset-0"></div>
-        
-        <!-- 
-          MUDANÇA: Conteúdo do Modal 
-          - Fundo dark mode alterado de dark:bg-gray-900 para dark:bg-[#111111]
-          - CORREÇÃO 1: Adicionado max-h-[90vh] e overflow-y-auto para responsividade mobile
-        -->
-        <div id="modal-content" class="relative w-full max-w-lg bg-white dark:bg-[#111111] rounded-lg shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto">
-            <!-- Botão de Fechar -->
-            <!-- OTIMIZAÇÃO ACESSIBILIDADE: Adicionado aria-label -->
-            <button id="modal-close-btn" class="absolute top-3 right-3 z-10 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors" aria-label="Fechar modal">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-            
-            <!-- 
-              MUDANÇA: Imagem do Produto 
-              - Altura alterada de h-64 para aspect-square (imagem 1:1)
-            -->
-            <img id="modal-img" src="https://placehold.co/600x400" alt="Imagem do Produto" class="w-full aspect-square object-cover">
-            
-            <!-- Detalhes do Produto -->
-            <div class="p-6">
-                <!-- 
-                  *** CORREÇÃO DARK MODE ***
-                  Adicionado dark:text-white ao título
-                -->
-                <h3 id="modal-title" class="text-3xl font-bold uppercase dark:text-white" style="font-family: 'Orbitron', sans-serif;">Nome do Produto</h3>
-                <p id="modal-price" class="text-2xl font-bold mt-2" style="color: var(--main-red);">R$ 0,00</p>
-                
-                <div class="divider !mx-0 !my-4 !w-16"></div>
-                
-                <!-- 
-                  *** CORREÇÃO DARK MODE ***
-                  Adicionado dark:text-gray-300 à descrição
-                -->
-                <p id="modal-desc" class="text-base font-light leading-relaxed mb-6 dark:text-gray-300">
-                    Descrição do produto...
-                </p>
-                
-                <!-- Botão de Comprar (dentro do modal) -->
-                <a id="modal-buy-link" href="https://wa.me/5584999048867" target="_blank" class="w-full text-center inline-block uppercase text-sm tracking-widest font-medium text-white bg-red-600 px-6 py-4 rounded-md hover:bg-red-700 transition-colors duration-300">
-                    Comprar Agora (WhatsApp)
-                </a>
-            </div>
-        </div>
-    </div>
 
-    
     <script>
-        // --- Script do Preloader ---
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
+        // --- 1. Cursor ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            gsap.to(cursorOutline, { x: posX, y: posY, duration: 0.15, ease: "power2.out" });
+        });
+
+        // --- 2. Three.js Background ---
+        const initThree = () => {
+            const canvas = document.querySelector('#webgl-canvas');
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.001);
+
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 100;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 200; 
+            const posArray = new Float32Array(particlesCount * 3);
+            
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 600;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 2,
+                color: 0xE11D48,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const particlesMesh = new THREE.Points(particlesGeometry, material);
+            scene.add(particlesMesh);
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                particlesMesh.rotation.y += 0.001;
+                particlesMesh.rotation.x += 0.0005;
+                renderer.render(scene, camera);
+            };
+            animate();
+            
+             window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        initThree();
+
+        // --- 3. UI Interactions & Preloader ---
+        document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 500);
+                const loader = document.getElementById('preloader');
+                gsap.to(loader, { opacity: 0, duration: 0.8, onComplete: () => loader.remove() });
+                gsap.to('.animate-fade-up', { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out" });
+            }, 1000);
         });
 
-        // ---
-        // ATUALIZAÇÃO: Lógica do Header movida para uma função separada
-        // ---
-        function updateNavbarBackground() {
-            const navbar = document.getElementById('navbar');
-            const htmlElement = document.documentElement;
-
-            if (window.scrollY > 50) {
-                // LÓGICA CORRIGIDA: Verifica o tema *antes* de aplicar o estilo
-                if (htmlElement.classList.contains('dark')) {
-                     navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; /* Fundo dark mode (preto) */
-                } else {
-                     navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; /* Fundo light mode */
-                }
-                navbar.style.backdropFilter = 'blur(10px)';
-                
-            } else {
-                navbar.style.backgroundColor = 'transparent';
-                navbar.style.backdropFilter = 'none';
+        // --- 4. Loja: Carrinho Inteligente (WhatsApp) ---
+        let cartItems = []; 
+        const cartLabel = document.getElementById('cart-count');
+        const cartBtn = document.getElementById('cart-btn');
+        
+        cartBtn.addEventListener('click', () => {
+            if (cartItems.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
             }
-        }
 
-        // --- Script do Header com Fundo (Scroll) ---
-        // Chama a função ao rolar
-        window.addEventListener('scroll', updateNavbarBackground);
+            let msg = `Olá GANG! Gostaria de finalizar meu pedido com os seguintes itens:\n\n`;
+            cartItems.forEach((item, index) => {
+                msg += `- ${item.product} (Tamanho: ${item.size}) - R$ ${item.price}\n`;
+            });
+            
+            const total = cartItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+            msg += `\nTotal Estimado: R$ ${total.toFixed(2)}`;
 
+            const link = `https://wa.me/5584999048867?text=${encodeURIComponent(msg)}`;
+            window.open(link, '_blank');
+        });
 
-        // --- Script de Animação de Scroll (Fade-in) ---
-        const faders = document.querySelectorAll('.fade-in-section');
-        const appearOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                const container = this.closest('.sizes-container');
+                container.querySelectorAll('.size-btn').forEach(b => {
+                    b.classList.remove('selected');
+                    b.classList.remove('bg-luxury-red', 'text-white', 'border-luxury-red');
+                    b.classList.add('border-gray-600');
+                });
+                
+                this.classList.add('selected');
+                this.classList.remove('border-gray-600');
+                this.classList.add('bg-luxury-red', 'text-white', 'border-luxury-red');
+            });
+        });
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const card = btn.closest('.product-card');
+                const selectedSizeBtn = card.querySelector('.size-btn.selected');
+                
+                if (!selectedSizeBtn) {
+                    alert("Por favor, selecione um tamanho.");
                     return;
-                } else {
-                    entry.target.classList.add('is-visible');
-                    appearOnScroll.unobserve(entry.target);
                 }
-            });
-        }, appearOptions);
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-        
-        // --- Script de Scroll Suave para Links Âncora ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+
+                const product = card.dataset.title;
+                const price = card.dataset.price;
+                const size = selectedSizeBtn.innerText;
+
+                cartItems.push({ product, size, price });
                 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // --- Script de Toggle Light/Dark Mode (Corrigido) ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleSun = document.getElementById('theme-toggle-sun');
-        const themeToggleMoon = document.getElementById('theme-toggle-moon');
-        
-        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
-        const themeToggleSunMobile = document.getElementById('theme-toggle-sun-mobile');
-        const themeToggleMoonMobile = document.getElementById('theme-toggle-moon-mobile');
+                const originalText = btn.innerText;
+                btn.innerText = "ADICIONADO!";
+                btn.classList.add('bg-green-600', 'border-green-600');
+                btn.classList.remove('bg-luxury-red');
+                
+                cartLabel.innerText = `CART (${cartItems.length})`;
+                gsap.from(cartLabel, { scale: 1.5, duration: 0.3, color: "#E11D48" });
 
-        function updateIcons(theme) {
-            if (theme === 'dark') {
-                themeToggleSun.classList.remove('hidden');
-                themeToggleMoon.classList.add('hidden');
-                themeToggleSunMobile.classList.remove('hidden');
-                themeToggleMoonMobile.classList.add('hidden');
-            } else {
-                themeToggleSun.classList.add('hidden');
-                themeToggleMoon.classList.remove('hidden');
-                themeToggleSunMobile.classList.add('hidden');
-                themeToggleMoonMobile.classList.remove('hidden');
-            }
-        }
-
-        function toggleTheme() {
-            const htmlElement = document.documentElement;
-            const isDark = htmlElement.classList.toggle('dark');
-            
-            if (isDark) {
-                localStorage.theme = 'dark';
-                updateIcons('dark');
-            } else {
-                localStorage.theme = 'light';
-                updateIcons('light');
-            }
-            
-            // ATUALIZAÇÃO: Chama a função do navbar diretamente
-            // em vez de disparar um evento de scroll.
-            updateNavbarBackground();
-        }
-
-        // Event Listeners
-        themeToggleBtn.addEventListener('click', toggleTheme);
-        themeToggleBtnMobile.addEventListener('click', toggleTheme);
-
-        // Define o estado inicial dos ícones no carregamento
-        const currentTheme = localStorage.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        updateIcons(currentTheme);
-        
-        
-        // --- 
-        // MELHORIA 1: Script do Menu Mobile
-        // ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex'); // Usa 'flex' para centralizar
-        }
-
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        mobileMenuClose.addEventListener('click', toggleMobileMenu);
-        // Fecha o menu ao clicar em um link
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (link.getAttribute('href').startsWith('#')) {
-                    toggleMobileMenu();
-                }
-            });
-        });
-
-        // --- Script do Chat Widget ---
-        const chatToggleButton = document.getElementById('chat-toggle-button');
-        const chatWindow = document.getElementById('chat-widget-window');
-        const chatCloseButton = document.getElementById('chat-close-button');
-        const chatInput = document.getElementById('chat-input');
-        const chatSendButton = document.getElementById('chat-send-button');
-        const chatBody = document.getElementById('chat-body');
-
-        function toggleChatWindow() {
-            if (chatWindow.classList.contains('hidden')) {
-                chatWindow.classList.remove('hidden');
                 setTimeout(() => {
-                    chatWindow.classList.remove('opacity-0', 'scale-95');
+                    btn.innerText = originalText;
+                    btn.classList.remove('bg-green-600', 'border-green-600');
+                    btn.classList.add('bg-luxury-red');
+                }, 1500);
+            });
+        });
+
+        // --- 5. Modal Logic ---
+        const modal = document.getElementById('product-modal');
+        const modalContent = document.getElementById('modal-content');
+        
+        document.querySelectorAll('.open-modal-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = e.target.closest('.product-card');
+                document.getElementById('modal-title').innerText = card.dataset.title;
+                document.getElementById('modal-price').innerText = `R$ ${card.dataset.price}`;
+                document.getElementById('modal-img').src = card.dataset.img;
+                document.getElementById('modal-desc').innerText = card.dataset.desc;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-90', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
                 }, 10);
+            });
+        });
+
+        const closeModal = () => {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-90', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+        };
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', closeModal);
+
+        // --- 6. Chatbot ---
+        const chatWin = document.getElementById('chat-window');
+        const chatMsgs = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        document.getElementById('chat-trigger').addEventListener('click', () => {
+            chatWin.classList.remove('hidden');
+            chatWin.classList.add('flex');
+            gsap.fromTo(chatWin, {y: 50, opacity: 0}, {y: 0, opacity: 1, duration: 0.4});
+        });
+
+        document.getElementById('close-chat').addEventListener('click', () => {
+            gsap.to(chatWin, {y: 50, opacity: 0, duration: 0.3, onComplete: () => {
+                chatWin.classList.add('hidden');
+                chatWin.classList.remove('flex');
+            }});
+        });
+
+        const responses = {
+            "oi": "Olá! Bem-vindo à rede da GANG. Como posso ajudar?",
+            "olá": "Olá! Bem-vindo à rede da GANG. Como posso ajudar?",
+            "times": "Temos as melhores lines do cenário! 🏆<br><br>**VALORANT:** Zopray, Liscarecuda, Luke, Zoneira/Suco, Ravenna.<br>**FORTNITE:** Luke, Ravenna, Jairinho, Diggle.<br>**CS2:** Luke, Zopray, Ravenna, Lucas, Jairinho.",
+            "valorant": "A line de Valorant é formada por: Zopray (Flex/IGL), Liscarecuda (Sentinela), Luke (Duelista), Zoneira/Suco (Iniciador) e Ravenna (Controlador).",
+            "fortnite": "No Fortnite temos: Luke (IGL), Ravenna (Fragger), Jairinho (Sup) e Diggle (Flex).",
+            "cs": "No CS2 contamos com: Luke (AWP), Zopray (IGL), Ravenna (Entry), Lucas (Lurker) e Jairinho (Rifler).",
+            "loja": "Nossa loja tem a Jersey Oficial 2025 e o Stealth Hoodie. Enviamos para todo o Brasil.",
+            "preço": "A Jersey está R$ 89,90 e o Hoodie R$ 149,90. Aceitamos PIX e Cartão.",
+            "roupa": "Confira nossa seção de Loja para ver os modelos disponíveis.",
+            "contato": "Você pode nos chamar no e-mail **voidstudio.contato@gmail.com** ou pelo WhatsApp na seção de contato.",
+            "default": "Desculpe, tente 'Times', 'Loja' ou 'Contato'."
+        };
+
+        window.processCommand = (cmd) => {
+            addMsg(cmd, true);
+            generateReply(cmd);
+        }
+
+        window.sendMsg = () => {
+            const txt = chatInput.value.trim();
+            if(!txt) return;
+            addMsg(txt, true);
+            chatInput.value = '';
+            generateReply(txt);
+        }
+
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') sendMsg();
+        });
+
+        function addMsg(txt, isUser) {
+            const div = document.createElement('div');
+            if(isUser) {
+                div.className = "bg-luxury-red text-white p-3 rounded-2xl rounded-tr-none text-sm self-end max-w-[85%] shadow-lg mb-2 ml-auto";
             } else {
-                chatWindow.classList.add('opacity-0', 'scale-95');
+                div.className = "bg-white/10 text-gray-200 p-3 rounded-2xl rounded-tl-none text-sm self-start max-w-[85%] border border-white/5 mb-2";
+            }
+            div.innerHTML = txt;
+            chatMsgs.appendChild(div);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        }
+
+        function generateReply(input) {
+            typingIndicator.classList.remove('hidden');
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                const lower = input.toLowerCase();
+                let reply = responses['default'];
+                for (const key in responses) {
+                    if (lower.includes(key)) {
+                        reply = responses[key];
+                        break;
+                    }
+                }
+                addMsg(reply, false);
+            }, 1000);
+        }
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileClose = document.getElementById('close-mobile');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
                 setTimeout(() => {
-                    chatWindow.classList.add('hidden');
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
                 }, 300);
             }
         }
 
-        chatToggleButton.addEventListener('click', toggleChatWindow);
-        chatCloseButton.addEventListener('click', toggleChatWindow);
-                
-        // --- 
-        // MELHORIA 2: Função para simular envio de chat (Lógica atualizada)
-        // ---
+        mobileToggle.addEventListener('click', toggleMenu);
+        mobileClose.addEventListener('click', toggleMenu);
 
-        // --- NOVO: Funções de "Digitando" ---
-        function showTypingIndicator() {
-            const typingBubble = document.createElement('div');
-            typingBubble.id = 'typing-indicator';
-            typingBubble.className = 'flex justify-start';
-            typingBubble.innerHTML = `
-                <div class="chat-bubble-bot p-4 rounded-lg rounded-bl-none text-white max-w-xs shadow">
-                    <p class="text-sm italic">GANG Assistant está digitando...</p>
-                </div>
-            `;
-            chatBody.appendChild(typingBubble);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-
-        function removeTypingIndicator() {
-            const typingIndicator = document.getElementById('typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        function sendChatMessage() {
-            const messageText = chatInput.value.trim();
-            if (messageText === "") return;
-
-            // 1. Cria a bolha da mensagem do usuário
-            const userBubble = document.createElement('div');
-            userBubble.className = 'flex justify-end';
-            userBubble.innerHTML = `
-                <!-- CORREÇÃO: texto do usuário no chat (preto no modo claro) -->
-                <div class="chat-bubble-user p-3 rounded-lg rounded-br-none text-black dark:text-white max-w-xs shadow">
-                    <p class="text-sm">${messageText}</p>
-                </div>
-            `;
-            chatBody.appendChild(userBubble);
-            chatInput.value = ""; // Limpa o input
-            chatBody.scrollTop = chatBody.scrollHeight; // Rola para a msg do usuário
-
-            // 2. Mostra o indicador "digitando"
-            showTypingIndicator();
-
-            // 2. Simulação de Resposta do Bot (Ajustado para 1.5s)
-            setTimeout(() => {
-                 // Remove o "digitando"
-                 removeTypingIndicator();
-                
-                 let botResponse = "";
-                 const msg = messageText.toLowerCase(); // Normaliza a entrada
-
-                 if (msg.includes("ola") || msg.includes("oi") || msg.includes("bom dia") || msg.includes("boa tarde")) {
-                    botResponse = "Olá! 👋 Sou o assistente da GANG. Como posso ajudar? Aqui estão algumas opções: <br>1-Times, 2-Sobre, 3-Loja, 4-Humano, 5-Parceiros";
-                 } else if (msg.includes("1") || msg.includes("times")) {
-                    // CORRIGIDO: Inclui Fortnite
-                    botResponse = "Nossos esquadrões atuais são de Valorant, Fortnite e Counter-Strike! Você pode ver mais na seção 'Times'.";
-                 } else if (msg.includes("2") || msg.includes("sobre")) {
-                    // NOVO: Resposta para "Sobre"
-                    botResponse = "A GANG E-Sports é uma equipe de ponta que fomenta a rivalidade virtual, com foco na vitória e, principalmente, na diversão! Saiba mais na seção 'Sobre'.";
-                 } else if (msg.includes("3") || msg.includes("loja")) {
-                    botResponse = "Ótimo! Nossa loja tem camisas, moletons e máscaras. Vou te levar até lá!";
-                    // Rola suavemente para a seção da loja
-                    document.getElementById('store')?.scrollIntoView({ behavior: 'smooth' });
-                    // Fecha o chat para o usuário ver a loja
-                    toggleChatWindow();
-                 } else if (msg.includes("4") || msg.includes("humano") || msg.includes("contato")) {
-                    botResponse = "Para falar com um humano, por favor, envie um e-mail para contato@gangesports.com (este é um e-mail de exemplo).";
-                 } else if (msg.includes("5") || msg.includes("parceiros") || msg.includes("sponsors")) {
-                    botResponse = "Temos orgulho dos nossos parceiros: Exitlag, Void Studios e GamersClub! Você pode vê-los na seção 'Parceiros'.";
-                 } else if (msg.includes("tchau") || msg.includes("obrigado") || msg.includes("vlw") || msg.includes("ate mais")) {
-                    botResponse = "Foi um prazer ajudar! Qualquer coisa, é só chamar. #GOGANG 🔥";
-                 } else {
-                    botResponse = "Desculpe, não entendi. Você pode tentar uma das opções? (1-Times, 2-Sobre, 3-Loja, 4-Humano, 5-Parceiros)";
-                 }
-                
-                 const botBubble = document.createElement('div');
-                 botBubble.className = 'flex justify-start';
-                 botBubble.innerHTML = `
-                    <div class="chat-bubble-bot p-4 rounded-lg rounded-bl-none text-white max-w-xs shadow">
-                        <p class="text-sm">${botResponse}</p>
-                    </div>
-                 `;
-                 chatBody.appendChild(botBubble);
-                 // Rola para a nova mensagem do bot
-                 chatBody.scrollTop = chatBody.scrollHeight;
-            }, 1500);
-        }
-
-        chatSendButton.addEventListener('click', sendChatMessage);
-        chatInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                sendChatMessage();
-            }
-        });
-        
-
-        // ---
-        // NOVO: Script do Modal de Produto
-        // ---
-        const productModal = document.getElementById('product-modal');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-        const openModalButtons = document.querySelectorAll('.open-modal-btn');
-        
-        // Elementos de conteúdo do Modal
-        const modalImg = document.getElementById('modal-img');
-        const modalTitle = document.getElementById('modal-title');
-        const modalPrice = document.getElementById('modal-price');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalBuyLink = document.getElementById('modal-buy-link'); // Link de compra dentro do modal
-
-        function openModal(title, price, img, desc) {
-            // 1. Preenche o conteúdo do modal
-            modalTitle.textContent = title;
-            modalPrice.textContent = price;
-            modalImg.src = img;
-            modalImg.alt = `Imagem de ${title}`;
-            modalDesc.textContent = desc;
-            
-            // Opcional: Atualizar o link de compra se for dinâmico
-            // modalBuyLink.href = ... 
-            
-            // 2. Mostra o modal com animação
-            productModal.classList.remove('hidden', 'opacity-0', 'invisible');
-            
-            // CORREÇÃO 2: Força um pequeno atraso (um "tick" do navegador)
-            // para garantir que a animação de entrada ocorra
-            setTimeout(() => {
-                productModal.classList.add('modal-visible');
-            }, 10); // 10ms é suficiente
-            
-            // Impede o scroll do body
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            // 1. Esconde o modal com animação
-            productModal.classList.remove('modal-visible');
-            // Espera a transição terminar antes de esconder
-            setTimeout(() => {
-                productModal.classList.add('hidden', 'opacity-0', 'invisible');
-                // Restaura o scroll do body
-                document.body.style.overflow = '';
-            }, 300); // Deve ser igual à duração da transição
-        }
-
-        // Adiciona listener para cada botão "Ver Detalhes"
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.product-card');
-                const title = card.dataset.title;
-                const price = card.dataset.price;
-                const img = card.dataset.img;
-                const desc = card.dataset.desc;
-                
-                openModal(title, price, img, desc);
+        // Fecha o menu ao clicar em links
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                }, 300);
             });
         });
-        
-        // Listeners para fechar o modal
-        modalCloseBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
-
     </script>
 </body>
-
 </html>
