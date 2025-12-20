@@ -228,15 +228,15 @@
 
     <!-- HERO SECTION -->
     <section class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
-        <img src="files/raze.png" onerror="this.style.display='none'" class="absolute -left-20 bottom-0 h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
-        <img src="files/peixoto.png" onerror="this.style.display='none'" class="absolute -right-20 bottom-0 h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
+        <img src="files/raze.png" onerror="this.style.display='none'" class="absolute -left-20 bottom-0 h-[50vh] md:h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
+        <img src="files/peixoto.png" onerror="this.style.display='none'" class="absolute -right-20 bottom-0 h-[50vh] md:h-[60vh] opacity-20 blur-sm pointer-events-none mix-blend-luminosity">
         
         <div class="z-10 text-center max-w-5xl">
-            <p class="text-luxury-red tracking-[0.5em] text-sm uppercase mb-4 opacity-0 animate-fade-up">Competição. Vitória. Legado.</p>
-            <h1 class="text-6xl md:text-9xl font-orbitron font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-900 leading-[0.9] tracking-tighter mb-8 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
+            <p class="text-luxury-red tracking-[0.5em] text-xs md:text-sm uppercase mb-4 opacity-0 animate-fade-up">Competição. Vitória. Legado.</p>
+            <h1 class="text-5xl md:text-9xl font-orbitron font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-gray-900 leading-[0.9] tracking-tighter mb-8 opacity-0 animate-fade-up" style="animation-delay: 0.2s;">
                 GANG<br><span class="text-stroke text-transparent">E-SPORTS</span>
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
+            <p class="text-gray-400 text-base md:text-xl font-light max-w-2xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 0.4s;">
                 A maior organização do Rio Grande do Norte. Redefinindo o cenário competitivo com precisão tática e paixão pelo jogo.
             </p>
         </div>
@@ -248,7 +248,7 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-32 relative z-10">
+    <section id="about" class="py-20 md:py-32 relative z-10">
         <!-- Watermark Logo -->
         <img src="files/logo.png" class="absolute -left-20 top-20 w-96 opacity-5 pointer-events-none grayscale rotate-[-15deg]">
 
@@ -256,7 +256,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5 space-y-8">
                     <h2 class="text-sm font-bold text-luxury-red tracking-[0.2em] uppercase">Manifesto</h2>
-                    <h3 class="text-4xl md:text-5xl font-orbitron font-bold leading-tight">Muito mais que<br>apenas um time.</h3>
+                    <h3 class="text-3xl md:text-5xl font-orbitron font-bold leading-tight">Muito mais que<br>apenas um time.</h3>
                     <p class="text-gray-400 leading-relaxed font-light border-l border-luxury-border pl-6">
                         A GANG não joga apenas para participar. Jogamos para dominar. Fundada com a visão de elevar o nível do E-Sports no Nordeste, nossa organização combina talento bruto com infraestrutura de elite.
                     </p>
@@ -284,7 +284,7 @@
     </section>
 
     <!-- TEAMS SECTION -->
-    <section id="teams" class="py-32 bg-luxury-panel relative overflow-hidden">
+    <section id="teams" class="py-20 md:py-32 bg-luxury-panel relative overflow-hidden">
         <!-- Watermark Logo -->
         <img src="files/logo.png" class="absolute -right-20 top-40 w-[500px] opacity-5 pointer-events-none grayscale rotate-[15deg]">
 
@@ -293,9 +293,10 @@
             <div class="w-24 h-1 bg-luxury-red mx-auto"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[600px] relative z-10">
+        <!-- Alterado de grid para flex para melhor controle de altura no mobile e animação grow no desktop -->
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-4 h-auto md:h-[600px] relative z-10">
             <!-- Valorant -->
-            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 w-full md:w-1/3 md:hover:grow-[2] md:grow border border-luxury-border h-[400px] md:h-auto">
                 <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
                 <img src="files/valorant.jpg" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
                 <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
@@ -312,7 +313,7 @@
                 </div>
             </div>
             <!-- Fortnite -->
-            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 w-full md:w-1/3 md:hover:grow-[2] md:grow border border-luxury-border h-[400px] md:h-auto">
                 <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
                 <img src="files/fortnite.jpg" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
                 <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
@@ -328,7 +329,7 @@
                 </div>
             </div>
             <!-- CS2 -->
-            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 md:hover:grow-[2] md:grow border border-luxury-border">
+            <div class="relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-700 w-full md:w-1/3 md:hover:grow-[2] md:grow border border-luxury-border h-[400px] md:h-auto">
                 <div class="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors z-10"></div>
                 <img src="files/cs2.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110">
                 <div class="absolute bottom-0 left-0 w-full p-8 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
@@ -348,7 +349,7 @@
     </section>
 
     <!-- GALERIA (Simples) -->
-    <section class="py-32 relative overflow-hidden bg-[#020202]">
+    <section class="py-20 md:py-32 relative overflow-hidden bg-[#020202]">
         <!-- Watermark Logo -->
         <img src="files/logo.png" class="absolute -left-20 bottom-20 w-[400px] opacity-5 pointer-events-none grayscale rotate-[-10deg]">
 
@@ -359,7 +360,7 @@
         
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
             <!-- Foto 1 -->
-            <div class="gallery-card h-[400px]">
+            <div class="gallery-card h-[300px] md:h-[400px]">
                 <img src="files/galeria1.jpg" alt="Galeria 1">
                 <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
                     <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Campeonato</span>
@@ -367,7 +368,7 @@
                 </div>
             </div>
             <!-- Foto 2 (Destaque) -->
-            <div class="gallery-card h-[400px] md:h-[450px] md:-mt-8 border-luxury-red border-2 shadow-[0_0_20px_rgba(225,29,72,0.2)]">
+            <div class="gallery-card h-[300px] md:h-[450px] md:-mt-8 border-luxury-red border-2 shadow-[0_0_20px_rgba(225,29,72,0.2)]">
                 <img src="files/galeria2.jpg" alt="Galeria 2">
                 <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
                     <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Destaque</span>
@@ -375,7 +376,7 @@
                 </div>
             </div>
             <!-- Foto 3 -->
-            <div class="gallery-card h-[400px]">
+            <div class="gallery-card h-[300px] md:h-[400px]">
                 <img src="files/galeria3.jpg" alt="Galeria 3">
                 <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-8">
                     <span class="text-luxury-red text-xs tracking-widest uppercase font-bold">Bastidores</span>
@@ -386,7 +387,7 @@
     </section>
 
     <!-- STORE (Hyper-Destaque) -->
-    <section id="store" class="py-32 bg-[#050505] relative overflow-hidden border-y-2 border-luxury-red/30">
+    <section id="store" class="py-20 md:py-32 bg-[#050505] relative overflow-hidden border-y-2 border-luxury-red/30">
         <!-- Background Gradient Glow -->
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-luxury-red/5 to-transparent pointer-events-none"></div>
         
@@ -501,7 +502,7 @@
     </section>
 
     <!-- NEW CONTACT SECTION -->
-    <section id="contact-section" class="py-32 bg-[#050505] relative border-t border-luxury-border">
+    <section id="contact-section" class="py-20 md:py-32 bg-[#050505] relative border-t border-luxury-border">
         <!-- Big Watermark Logo -->
         <img src="files/logo.png" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] opacity-5 pointer-events-none grayscale">
         
@@ -626,11 +627,13 @@
     </div>
 
     <!-- CHATBOT -->
-    <button id="chat-trigger" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-luxury-red flex items-center justify-center text-white shadow-[0_0_30px_rgba(225,29,72,0.5)] hover:scale-110 transition-transform">
+    <!-- Botão Trigger (Mobile: bottom-4 right-4 | Desktop: bottom-8 right-8) -->
+    <button id="chat-trigger" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 w-14 h-14 rounded-full bg-luxury-red flex items-center justify-center text-white shadow-[0_0_30px_rgba(225,29,72,0.5)] hover:scale-110 transition-transform">
         <i class="fa-solid fa-comment-dots text-2xl"></i>
     </button>
     
-    <div id="chat-window" class="fixed bottom-28 right-8 z-50 w-96 bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-2xl hidden flex-col overflow-hidden backdrop-blur-xl">
+    <!-- Janela do Chat (Mobile: bottom-20 right-4 width-responsive | Desktop: bottom-28 right-8 width-96) -->
+    <div id="chat-window" class="fixed bottom-20 right-4 md:bottom-28 md:right-8 z-50 w-[calc(100%-2rem)] md:w-96 bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-2xl hidden flex-col overflow-hidden backdrop-blur-xl">
         <div class="bg-gradient-to-r from-luxury-red to-[#be123c] p-4 flex justify-between items-center shadow-lg">
             <div class="flex items-center gap-3">
                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
